@@ -1,0 +1,104 @@
+.header {
+    grid-area: header;
+    background-color: darkseagreen;
+}
+
+.headerContainer {
+    grid-area: header;
+    text-align: center;
+    background-color: darkseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.topheader {
+    background-color: #1e293b;
+    display: flex;
+    height: 100px;
+    margin-bottom: 20px;
+    justify-content: center;
+    width: 100%;
+    padding-top: 50px;
+}
+
+.topheader textarea {
+    width: 350px
+}
+
+.logo {
+    height: 45px;
+    background-color: palevioletred;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.subheader {
+    background-color: darkseagreen;
+    margin: 20px;
+    /*width: fit-content;*/
+}
+
+.subheader a {
+    text-decoration: none;
+    border-right: 1px solid grey;
+    color: #1e293b;
+}
+
+.subheader a:hover {
+    background-color: #1e293b;
+    color: #fff;
+    box-shadow: 0 4px 4px #3AE1C1;
+}
+
+
+
+@media (min-width: 768px) {
+    .subheader a{
+        font-size: 1.2rem;
+        padding: 0.2rem 1rem;
+    }
+}
+
+.searchBar textarea {
+    resize: none;
+    height: 40px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.subheader a {*/
+/*    background-color: #fff;*/
+/*    border: 0 solid #e2e8f0;*/
+/*    border-radius: 1.5rem;*/
+/*    box-sizing: border-box;*/
+/*    color: #0d172a;*/
+/*    cursor: pointer;*/
+/*    display: inline-block;*/
+/*    font-family: "Comic Sans MS", sans-serif;*/
+/*    line-height: 0.75;*/
+/*    padding: 1rem 1.4rem;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    transition: all .1s cubic-bezier(.4, 0, .2, 1);*/
+/*    box-shadow: 0 4px 4px #0d172a;*/
+/*    user-select: none;*/
+/*    -webkit-user-select: none;*/
+/*    touch-action: manipulation;*/
+/*}*/

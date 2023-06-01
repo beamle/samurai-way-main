@@ -1,0 +1,39 @@
+.dialogsContainer {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "dialogs messages";
+
+}
+
+.dialogs {
+    grid-area: dialogs;
+    padding: 10px;
+    margin: 10px;
+}
+
+.dialog {
+    display: flex;
+    padding: 5px;
+    background-color: #3AE1C1;
+    border-bottom: 1px solid black;
+
+}
+
+.dialog_img {
+    order: -1;
+    margin-right: 5px;
+}
+
+.dialog_img img {
+    width: 50px;
+
+}
+
+.messages {
+    grid-area: messages;
+    padding: 10px 10px 10px 30px;
+    margin: 10px;
+    border-left: 1px solid grey;
+}
