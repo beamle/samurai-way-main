@@ -1,59 +1,106 @@
 .header {
     grid-area: header;
-    background-color: darkseagreen;
 }
 
 .headerContainer {
     grid-area: header;
     text-align: center;
-    background-color: darkseagreen;
+    background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
-
 
 .topheader {
-    background-color: #1e293b;
+    background-color: #ffffff;
     display: flex;
-    height: 100px;
-    margin-bottom: 20px;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    height: 80px;
     width: 100%;
-    padding-top: 50px;
+    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #dcdcdc;
 }
 
-.topheader textarea {
-    width: 350px
+.logoWrapper {
 }
 
 .logo {
-    height: 45px;
-    background-color: palevioletred;
+    display: flex;
 }
 
 .logo img {
-    width: 50px;
+    margin-left: 20px;
+}
+
+.sbWrapper {
+    flex: 1;
+}
+
+.searchBar {
+    display: flex;
+    margin-left: 50px;
+}
+
+/*.topheader .searchBar {*/
+/*    width: 350px;*/
+/*}*/
+
+.searchBar textarea {
+    border: none;
+    border-radius: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    resize: none;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #f8f8f8;
+
+}
+
+
+
+
+
+.icWrapper {
+    display: flex;
+}
+
+.topheader .ic {
+    color: #acb0ac;
+    font-size: 20px;
+    align-self: center;
+    margin-left: 30px;
+}
+
+.topheader img {
+    width: 100px;
+
+}
+
+.topheader .profileImg {
 }
 
 .subheader {
-    background-color: darkseagreen;
     margin: 20px;
-    /*width: fit-content;*/
 }
 
 .subheader a {
     text-decoration: none;
-    border-right: 1px solid grey;
-    color: #1e293b;
+    /*border-right: 1px solid #c0bebe;*/
+    color: #a7aaab;
+    transition: box-shadow 200ms ease;
 }
 
 .subheader a:hover {
-    background-color: #1e293b;
-    color: #fff;
-    box-shadow: 0 4px 4px #3AE1C1;
+    color: darkseagreen;
 }
+
+
 
 
 
@@ -64,16 +111,9 @@
     }
 }
 
-.searchBar textarea {
-    resize: none;
-    height: 40px;
-    border-radius: 50px;
-    text-align: center;
-}
-
-
-
-
+/*.searchBar textarea::placeholder {*/
+/*    text-align: center;*/
+/*}*/
 
 
 

@@ -1,0 +1,17 @@
+.dialog {
+    display: flex;
+    padding: 5px;
+    background-color: #3AE1C1;
+    border-bottom: 1px solid black;
+
+}
+
+.dialog_img {
+    order: -1;
+    margin-right: 5px;
+}
+
+.dialog_img img {
+    width: 50px;
+
+}

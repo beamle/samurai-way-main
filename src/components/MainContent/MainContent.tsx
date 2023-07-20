@@ -1,8 +1,6 @@
 import React from 'react';
-import sunset from "../../pictures/sunset.jpg";
+import sunset from "../../assets/sunset.jpg";
 import s from "./MainContent.module.css";
-import Profile from "../profile/Profile/Profile";
-import Dialogs from '../Dialogs/Dialogs';
 
 const MainContent = () => {
     return (

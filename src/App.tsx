@@ -5,26 +5,35 @@ import Navbar from './components/Navbar/Navbar';
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/profile/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {addCharToState, state, StateType} from "./redux/state";
-import {addPostToState} from "./redux/state";
+import store, {StoreType} from "./redux/state";
 
 type AppPropsType = {
-    state: StateType
+    store: StoreType
 }
 
 function App(props: AppPropsType) {
-    const {postData, dialogsData, messagesData, sidebarData, charData} = props.state;
+    //state
+    const {postData, newPostText} = props.store._state.profilePage;
+    const {dialogsData, messagesData} = props.store._state.dialogsPage;
+    const {sidebarData} = props.store._state;
+    const {addCharToState, addPostToState} = props.store
 
     return (
         <BrowserRouter>
             <div className="App">
                 <div className='app-wrapper'>
+                    {/*<Exercise/>*/}
                     <Header/>
-                    <Navbar sidebarData={sidebarData} />
+                    <Navbar sidebarData={sidebarData}/>
                     <div className="app-wrapper-content">
                         <Routes>
-                            <Route path="/dialogs/*" element={<Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}/>
-                            <Route path="/profile" element={<Profile postData={postData} addPostToState={addPostToState} addCharToState={addCharToState} charData={charData}/>}/>
+                            <Route path="/dialogs/*"
+                                   element={<Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}/>
+                            <Route path="/profile" element={<Profile postData={postData}
+                                                                     addPostToState={addPostToState.bind(props.store)}
+                                                                     addCharToState={addCharToState.bind(props.store)}
+                                                                     newPostText={newPostText}
+                                                                     dispatch={store.dispatch.bind(store)}/>}/>
                             {/*<MainContent/>*/}
                             {/*<Footer/>*/}
                         </Routes>
