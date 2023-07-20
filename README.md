@@ -1,2 +1,6 @@
+Use yarn for package manager
+
+### `yarn`
 use yarn to install dependencies
-yarn start To start the project
+### `yarn start`
+yarn start to start project 
