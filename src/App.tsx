@@ -14,9 +14,8 @@ type AppPropsType = {
 function App(props: AppPropsType) {
     //state
     const {postData, newPostText} = props.store._state.profilePage;
-    const {dialogsData, messagesData} = props.store._state.dialogsPage;
+    const {dialogsData, messagesData, newMessageText} = props.store._state.dialogsPage;
     const {sidebarData} = props.store._state;
-    const {addCharToState, addPostToState} = props.store
 
     return (
         <BrowserRouter>
@@ -27,11 +26,11 @@ function App(props: AppPropsType) {
                     <Navbar sidebarData={sidebarData}/>
                     <div className="app-wrapper-content">
                         <Routes>
-                            <Route path="/dialogs/*"
-                                   element={<Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}/>
+                            <Route path="/dialogs/*" element={<Dialogs dialogsData={dialogsData}
+                                                                       messagesData={messagesData}
+                                                                       newMessageText={newMessageText}
+                                                                       dispatch={store.dispatch.bind(store)}/>}/>
                             <Route path="/profile" element={<Profile postData={postData}
-                                                                     addPostToState={addPostToState.bind(props.store)}
-                                                                     addCharToState={addCharToState.bind(props.store)}
                                                                      newPostText={newPostText}
                                                                      dispatch={store.dispatch.bind(store)}/>}/>
                             {/*<MainContent/>*/}

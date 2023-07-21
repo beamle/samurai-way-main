@@ -1,7 +1,7 @@
 import React from 'react';
 
 type PostType = {
-    id: number
+    id: string
     message: string
     like?: number
 }

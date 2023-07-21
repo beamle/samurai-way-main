@@ -1,24 +1,22 @@
 import React, {ChangeEvent, createRef} from 'react';
 import Post from "./Post/Post";
 import {ProfilePropsType} from "../Profile/Profile";
+import {addCharAC, addPostAC} from "../../../redux/state";
 
 type MyPostsType = ProfilePropsType
 
-const MyPosts = (props: MyPostsType) => {
-    console.log(props, "mypostsposrps")
 
-    const {postData, newPostText} = props;
+const MyPosts = ({postData, newPostText, dispatch}: MyPostsType) => {
+
     let postMessageRef = createRef<HTMLTextAreaElement>();
 
     const postTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.addCharToState(e.currentTarget.value)
-        props.dispatch({type: "ADD-CHAR", newText: e.currentTarget.value})
+        dispatch(addCharAC(e.currentTarget.value))
     }
 
     const onClickPostAddHandler = () => {
         if (postMessageRef.current) {
-            // props.addPostToState(postMessageRef.current?.value);
-            props.dispatch({type: "ADD-POST", postText: postMessageRef.current?.value})
+            dispatch(addPostAC(postMessageRef.current?.value))
         }
     }
 
@@ -26,7 +24,7 @@ const MyPosts = (props: MyPostsType) => {
 
     return (
         <div>
-            <textarea ref={postMessageRef} onChange={postTextHandler} value={newPostText} name="post" id="1"></textarea>
+            <textarea ref={postMessageRef} onChange={postTextHandler} value={newPostText} name="post" id="1"/>
             <button onClick={onClickPostAddHandler}>Add post</button>
             {showPost}
         </div>

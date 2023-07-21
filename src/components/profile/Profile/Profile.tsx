@@ -6,13 +6,11 @@ import {ActionsType} from "../../../redux/state";
 
 export type ProfilePropsType = {
     postData: {
-        id: number
+        id: string
         message: string
         like: number
     }[]
     newPostText: string
-    addPostToState: (postText: string) => void
-    addCharToState: (character: string) => void
     dispatch: (action: ActionsType) => void
 }
 
@@ -23,8 +21,6 @@ const Profile = (props: ProfilePropsType) => {
         <div className={s.profile}>
             <ProfileInfo/>
             <MyPosts postData={postData}
-                     addPostToState={props.addPostToState}
-                     addCharToState={props.addCharToState}
                      newPostText={newPostText}
                      dispatch={dispatch}/>
         </div>
