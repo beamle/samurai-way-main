@@ -1,22 +1,33 @@
 import React, {ChangeEvent, createRef} from 'react';
 import Post from "./Post/Post";
 import {ProfilePropsType} from "../Profile/Profile";
-import {addCharAC, addPostAC} from "../../../redux/state";
+import {addCharAC, addPostAC} from "../../../store/profile/profile.reducer";
+import {ActionsType} from "../../../redux/store";
 
-type MyPostsType = ProfilePropsType
+type MyPostsType = {
+    postData: {
+        id: string
+        message: string
+        like: number
+    }[]
+    newPostText: string
+    updateNewPostText: (text: string) => void
+    addChar: (char: string) => void
+}
 
 
-const MyPosts = ({postData, newPostText, dispatch}: MyPostsType) => {
+const MyPosts = ({postData, newPostText, updateNewPostText, addChar}: MyPostsType) => {
 
     let postMessageRef = createRef<HTMLTextAreaElement>();
 
     const postTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(addCharAC(e.currentTarget.value))
+        addChar(e.currentTarget.value)
     }
 
     const onClickPostAddHandler = () => {
         if (postMessageRef.current) {
-            dispatch(addPostAC(postMessageRef.current?.value))
+            let text = postMessageRef.current?.value
+            updateNewPostText(text)
         }
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {SidebarDataType} from "../../../redux/state";
+import {SidebarDataType} from "../../../redux/store";
 import s from "./Sidebar.module.css";
 
 type SidebarPropsType = {

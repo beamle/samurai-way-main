@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
-import {SidebarDataType} from "../../redux/state";
+import {SidebarDataType} from "../../redux/store";
 import Sidebar from "./Sidebar/Sidebar";
 
 const setActive = (link: { isActive: boolean, isPending: boolean }) => link.isActive ? s.active : "";

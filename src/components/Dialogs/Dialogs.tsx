@@ -2,35 +2,34 @@ import React, {ChangeEvent, EventHandler, useRef} from 'react';
 import s from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {ActionsType, addMessageAC, addMessageCharAC} from "../../redux/state";
-import MyInput from "../common/MyInput/MyInput";
+import {ActionsType, DialogsDataType, MessagesDataType} from "../../redux/store";
+import MyInput from "../../common/MyInput/MyInput";
+import {addMessageAC, addMessageCharAC} from "../../store/dialogs/dialogs.reducer";
+import {StoreType} from "../../redux/redux-store";
 
 type DialogsPropsType = {
-    dialogsData: {
-        id: string
-        name: string
-    }[]
-    messagesData: {
-        id: string
-        message: string
-    }[]
-    dispatch: (action: ActionsType) => void
+    dialogsData: DialogsDataType
+    messagesData: MessagesDataType
     newMessageText: string
+    addMessage: (message: string) => void
+    addMessageCharacter: (char:string) => void
 }
 
 
 const Dialogs = (props: DialogsPropsType) => {
-    const {dialogsData, messagesData, newMessageText, dispatch} = props;
+    const {dialogsData, messagesData, newMessageText} = props
+
+    const messageRef = useRef<HTMLInputElement>(null)
+    const addMessageCharacter = (e: ChangeEvent<HTMLInputElement>) => props.addMessageCharacter(e.currentTarget.value)
+    const addMessage = () => {
+        if (messageRef.current !== null) {
+            props.addMessage(messageRef.current.value)
+        }
+    }
+
 
     const showDialogs = dialogsData.map(dialog => <Dialog id={dialog.id} title={dialog.name}/>);
     const showMessages = messagesData.map(message => <Message id={message.id} message={message.message}/>);
-    const messageRef = useRef<HTMLInputElement>(null)
-    const addMessageCharacter = (e: ChangeEvent<HTMLInputElement>) => dispatch(addMessageCharAC(e.currentTarget.value))
-    const addMessage = () => {
-        if (messageRef.current !== null) {
-            dispatch(addMessageAC(messageRef.current.value))
-        }
-    }
 
     return (
         <div className={s.dialogsContainer}>
