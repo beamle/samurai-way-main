@@ -2,40 +2,37 @@ import {v1} from "uuid"
 import {addCharAC, addPostAC, profileReducer} from "../store/profile/profile.reducer";
 import {addMessageAC, addMessageCharAC, dialogsReducer} from "../store/dialogs/dialogs.reducer";
 
-export type PostDataType = {
+type PostDataType = {
     id: string
     message: string
     like: number
 }[]
-export type DialogsDataType = {
+type DialogsDataType = {
     id: string
     name: string
 }[]
-export type MessagesDataType = {
+type MessagesDataType = {
     id: string
     message: string
 }[]
-export type SidebarDataType = {
+type SidebarDataType = {
     id: string
     name: string
 }[]
-export type CharDataType = {
-    charData: string
-}
-export type ProfilePageType = {
+type ProfilePageType = {
     postData: PostDataType
     newPostText: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogsData: DialogsDataType
     messagesData: MessagesDataType
     newMessageText: string
 }
-export type SidebarType = {
+type SidebarType = {
     sidebarData: SidebarDataType
 }
 
-export type StateType = {
+type StateType = {
     profilePage: ProfilePageType
     // postData: PostDataType
     // newPostText: string
@@ -108,6 +105,6 @@ const store: StoreType = {
 export type ActionsType =
     ReturnType<typeof addCharAC> | ReturnType<typeof addPostAC> |
     ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC>
+// TODO take this shit out to the separate file
 
 
-export default store

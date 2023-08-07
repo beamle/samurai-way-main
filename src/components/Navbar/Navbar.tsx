@@ -1,19 +1,14 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
-import {SidebarDataType} from "../../redux/store";
-import Sidebar from "./Sidebar/Sidebar";
+import {SidebarContainer} from "./Sidebar/SidebarContainer";
 
 const setActive = (link: { isActive: boolean, isPending: boolean }) => link.isActive ? s.active : "";
 
-type NavbarPropsType = {
-    sidebarData: SidebarDataType
-}
 
-const Navbar = (props: NavbarPropsType) => {
-    const {sidebarData} = props;
-
+const Navbar = () => {
     return (
+
         <nav className={s.nav}>
             <div className={s.nav_items}>
                 <div className={s.nav_item}>
@@ -32,9 +27,11 @@ const Navbar = (props: NavbarPropsType) => {
                     <NavLink to="/settings>" className={setActive}>📪 Settings</NavLink>
                 </div>
             </div>
-            <div className={s.sidebar}><Sidebar sidebarData={sidebarData}/></div>
+            <div className={s.sidebar}><SidebarContainer/></div>
         </nav>
+
     );
 };
+
 
 export default Navbar;

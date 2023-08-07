@@ -7,17 +7,11 @@ import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import {ActionsType} from "../../../redux/store";
 import store, {StoreType} from "../../../redux/redux-store";
 
-export type ProfilePropsType = {
-    store: StoreType
-}
-
-const Profile = (props: ProfilePropsType) => {
-
-
+const Profile = () => {
     return (
         <div className={s.profile}>
             <ProfileInfo/>
-            <MyPostsContainer store={store}/>
+            <MyPostsContainer/>
 
         </div>
     );

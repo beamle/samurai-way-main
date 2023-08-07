@@ -1,8 +1,18 @@
-import store, {ActionsType, ProfilePageType, StateType} from "../../redux/store";
+import {ActionsType} from "../../redux/store";
 import {v1} from "uuid";
 
 export const addCharAC = (newText: string) => ({type: "ADD-CHAR" as const, newText})
 export const addPostAC = (postText: string) => ({type: "ADD-POST" as const, postText})
+
+type PostDataType = {
+    id: string
+    message: string
+    like: number
+}[]
+export type ProfilePageType = {
+    postData: PostDataType
+    newPostText: string
+}
 
 const initialState: ProfilePageType = {
         postData: [
@@ -13,19 +23,14 @@ const initialState: ProfilePageType = {
         newPostText: 'abc'
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
-            const {postData} = state
             const newPost = {id: v1(), message: action.postText, like: 222}
-            postData.push(newPost);
             state.newPostText = '';
-            // break
-            return state
+            return {...state, postData: [...state.postData, newPost]}
         case "ADD-CHAR":
-            state.newPostText = action.newText
-            // break
-            return state
+            return {...state, newPostText: action.newText}
         default:
             return state
     }

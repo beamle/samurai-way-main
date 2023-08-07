@@ -2,26 +2,27 @@ import React, {ChangeEvent, EventHandler, useRef} from 'react';
 import s from "./Dialogs.module.css";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {ActionsType, DialogsDataType, MessagesDataType} from "../../redux/store";
 import MyInput from "../../common/MyInput/MyInput";
 import {addMessageAC, addMessageCharAC} from "../../store/dialogs/dialogs.reducer";
 import {StoreType} from "../../redux/redux-store";
+import {DialogsPropsType} from "./DialogsContainer";
 
-type DialogsPropsType = {
-    dialogsData: DialogsDataType
-    messagesData: MessagesDataType
-    newMessageText: string
-    addMessage: (message: string) => void
-    addMessageCharacter: (char:string) => void
-}
+// type DialogsPropsType = {
+//     dialogsData: DialogsDataType
+//     messagesData: MessagesDataType
+//     newMessageText: string
+//     addMessage: (message: string) => void
+//     addMessageCharacter: (char:string) => void
+// }
 
 
 const Dialogs = (props: DialogsPropsType) => {
-    const {dialogsData, messagesData, newMessageText} = props
+    const {dialogsData, messagesData, newMessageText} = props.dialogsPage
+    const {addMessageCharacter, addMessage} = props
 
     const messageRef = useRef<HTMLInputElement>(null)
-    const addMessageCharacter = (e: ChangeEvent<HTMLInputElement>) => props.addMessageCharacter(e.currentTarget.value)
-    const addMessage = () => {
+    const addMessageChar = (e: ChangeEvent<HTMLInputElement>) => props.addMessageCharacter(e.currentTarget.value)
+    const addMessageItself = () => {
         if (messageRef.current !== null) {
             props.addMessage(messageRef.current.value)
         }
@@ -36,8 +37,8 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.dialogs}>{showDialogs}</div>
             <div className={s.messages}>
                 {showMessages}
-                <MyInput ref={messageRef} type="text" onChangeCallback={addMessageCharacter} value={newMessageText}></MyInput>
-                <button onClick={addMessage}>add</button>
+                <MyInput ref={messageRef} type="text" onChangeCallback={addMessageChar} value={newMessageText}></MyInput>
+                <button onClick={addMessageItself}>add</button>
             </div>
         </div>
     );

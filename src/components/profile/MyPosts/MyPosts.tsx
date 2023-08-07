@@ -1,23 +1,22 @@
 import React, {ChangeEvent, createRef} from 'react';
 import Post from "./Post/Post";
-import {ProfilePropsType} from "../Profile/Profile";
-import {addCharAC, addPostAC} from "../../../store/profile/profile.reducer";
-import {ActionsType} from "../../../redux/store";
+import {MyPostsType} from "./MyPostsContainer";
 
-type MyPostsType = {
-    postData: {
-        id: string
-        message: string
-        like: number
-    }[]
-    newPostText: string
-    updateNewPostText: (text: string) => void
-    addChar: (char: string) => void
-}
+// type MyPostsType = {
+//     postData: {
+//         id: string
+//         message: string
+//         like: number
+//     }[]
+//     newPostText: string
+//     updateNewPostText: (text: string) => void
+//     addChar: (char: string) => void
+// }
 
 
-const MyPosts = ({postData, newPostText, updateNewPostText, addChar}: MyPostsType) => {
-
+const MyPosts = (props: MyPostsType) => {
+    const {updateNewPostText, addChar} = props
+    const {postData, newPostText} = props.profilePage
     let postMessageRef = createRef<HTMLTextAreaElement>();
 
     const postTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

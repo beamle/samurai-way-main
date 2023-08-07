@@ -1,13 +1,10 @@
 import React from 'react';
-import {SidebarDataType} from "../../../redux/store";
 import s from "./Sidebar.module.css";
+import {SidebarType} from "./SidebarContainer";
 
-type SidebarPropsType = {
-    sidebarData: SidebarDataType
-}
 
-const Sidebar = (props: SidebarPropsType) => {
-    const {sidebarData} = props;
+const Sidebar = (props: SidebarType) => {
+    const {sidebarData} = props.sidebarPart;
 
     let showFriends = sidebarData.map(friend => {
         return (
