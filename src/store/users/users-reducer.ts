@@ -4,27 +4,24 @@ import {ActionsType} from "../../redux/store";
 
 
 const initialState = {
-    users: [
-        {id: v1(), followed: true, name: "Nikita", status: "Student", location: {city: "Tallinn", country: "Estonia"} },
-        {id: v1(), followed: true, name: "Bob", status: "Student", location: {city: "Tallinn", country: "Estonia"} },
-        {id: v1(), followed: false, name: "James", status: "Student", location: {city: "Tallinn", country: "Estonia"} },
-        {id: v1(), followed: false, name: "Liisa", status: "Student", location: {city: "Tallinn", country: "Estonia"} }
-    ]
+    users: [] as UserType[]
 }
+
+type InitialStateType = typeof initialState
 
 export type UserType = {
     id: string
     followed: boolean
     name: string
     status: string
-    location: {city: string, country: string}
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
+    }
 }
 
-type UsersType = {
-    users: UserType[]
-}
-
-export const usersReducer = (state: UsersType = initialState, action: ActionsType): UsersType => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {...state, users: state.users.map(el => el.id === action.id ? {...el, followed: true} : el)}
