@@ -24,7 +24,10 @@ const Navbar = () => {
                     <NavLink to="/music" className={setActive}>📪 Music</NavLink>
                 </div>
                 <div className={s.nav_item}>
-                    <NavLink to="/settings>" className={setActive}>📪 Settings</NavLink>
+                    <NavLink to="/settings" className={setActive}>📪 Settings</NavLink>
+                </div>
+                <div className={s.nav_item}>
+                    <NavLink to="/users" className={setActive}>📪 Find friends</NavLink>
                 </div>
             </div>
             <div className={s.sidebar}><SidebarContainer/></div>

@@ -4,7 +4,11 @@ import {ActionsType} from "../../redux/store";
 
 
 const initialState = {
-    users: [] as UserType[]
+    users: [] as UserType[],
+    pageSize: 10,  // how many items will be returned in response
+    usersCount: 11,
+    currentPage: 1
+
 }
 
 type InitialStateType = typeof initialState
@@ -28,7 +32,12 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case "UNFOLLOW":
             return {...state, users: state.users.map(el => el.id === action.id ? {...el, followed: false} : el)}
         case "SET_USERS":
-            return {...state, users: [...state.users, ...action.users]}
+            // return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+        case "SET_CURRENT_PAGE":
+            return {...state, currentPage: action.currentPage}
+        case "SET_USERS_COUNT":
+            return {...state, usersCount: action.usersCount}
         default:
             return state
     }
@@ -37,3 +46,5 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 export const followAC = (id: string) => ({type: "FOLLOW", id}) as const
 export const unFollowAC = (id: string) => ({type: "UNFOLLOW", id}) as const
 export const setUsersAC = (users: UserType[]) => ({type: "SET_USERS", users}) as const
+export const setCurrentPageAC = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage}) as const
+export const setUsersCountAC = (usersCount: number) => ({type: "SET_USERS_COUNT", usersCount}) as const

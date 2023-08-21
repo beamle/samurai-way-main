@@ -3,6 +3,7 @@ import {UsersPropsType} from "./UsersContainer";
 import axios from 'axios';
 import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
 import s from "./Users.module.css";
+import {UserType} from "../../store/users/users-reducer";
 
 const settings = {
     withCredentials: true,
@@ -11,10 +12,8 @@ const settings = {
     }
 }
 
-
 const Users = (props: UsersPropsType) => {
     const {follow, unfollow, setUsers} = props;
-    console.log(props)
     const getUsers = () => {
         if (props.usersPart.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users")
