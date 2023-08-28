@@ -5,39 +5,69 @@
 .headerContainer {
     grid-area: header;
     text-align: center;
-    background-color: #f8f8f8;
+    /*background-color: #e1f3ff;*/
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    margin-bottom: 20px;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .topheader {
     background-color: #ffffff;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 50px;
     width: 100%;
     border-bottom: 1px solid #dcdcdc;
     border-top: 1px solid #dcdcdc;
 }
 
 .logoWrapper {
-}
-
-.logo {
     display: flex;
-}
-
-.logo img {
+    flex-direction: column;
+    align-items: flex-start;
     margin-left: 20px;
 }
 
+.logo {
+    /*display: flex;*/
+}
+
+.logoWrapper p{
+    margin: 0;
+}
+
+.logo img {
+    align-self: flex-start;
+}
+
+@media (max-width: 1250px) {
+    .logo img {
+        display: none;
+    }
+}
+@media (max-width: 885px) {
+    .sbWrapper {
+        display: none;
+    }
+    .topheader {
+        display: flex;
+        justify-content: center;
+    }
+    .logoWrapper p{
+        margin: 0;
+        margin-left: 20px;
+        font-size: 12px;
+    }
+
+}
+
+
 .sbWrapper {
-    flex: 1;
+    /*flex: 1;*/
 }
 
 .searchBar {
@@ -80,6 +110,13 @@
 .topheader img {
     width: 100px;
 
+}
+
+@media (max-width: 885px) {
+    .topheader img {
+        width: 75px;
+        height: auto;
+    }
 }
 
 .topheader .profileImg {

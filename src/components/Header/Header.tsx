@@ -16,11 +16,12 @@ function Header() {
             <div className={s.headerContainer}>
                 <div className={s.topheader}>
                     <div className={s.logoWrapper}>
-                        <div className={s.logo}><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_1280.png" alt="banana"/></div>
+                        {/*<div className={s.logo}><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_1280.png" alt="banana"/></div>*/}
+                        <p className={s.logo}>BetterThanFacebookAnyways</p>
                     </div>
-                    <div className={s.sbWrapper}>
-                        <div className={s.searchBar}><textarea placeholder={'search'}></textarea></div>
-                    </div>
+                    {/*<div className={s.sbWrapper}>*/}
+                    {/*    <div className={s.searchBar}><textarea placeholder={'search'}></textarea></div>*/}
+                    {/*</div>*/}
                     <div className={s.icWrapper}>
                         <div className={s.ic}>{heart}</div>
                         <div className={s.ic}>{bell}</div>
@@ -31,11 +32,11 @@ function Header() {
 
                     </div>
                 </div>
-                <div className={s.subheader}>
-                    <a href='#'> Home</a>
-                    <a href='#'> Friends</a>
-                    <a href='#'> Messages</a>
-                </div>
+                {/*<div className={s.subheader}>*/}
+                {/*    <a href='#'> Home</a>*/}
+                {/*    <a href='#'> Friends</a>*/}
+                {/*    <a href='#'> Messages</a>*/}
+                {/*</div>*/}
             </div>
         </div>
     )

@@ -4,7 +4,7 @@
     grid-template-rows: 1fr;
     grid-template-areas:
         "dialogs messages";
-
+    border-left: 2px solid #e0e4e7;
 }
 
 .dialogs {
