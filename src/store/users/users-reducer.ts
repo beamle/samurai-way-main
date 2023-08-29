@@ -7,7 +7,8 @@ const initialState = {
     users: [] as UserType[],
     pageSize: 10,  // how many items will be returned in response
     usersCount: 11,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 
 }
 
@@ -38,13 +39,16 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, currentPage: action.currentPage}
         case "SET_USERS_COUNT":
             return {...state, usersCount: action.usersCount}
+        case "TOGGLE-IS-FETCHING":
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
 }
 
-export const followAC = (id: string) => ({type: "FOLLOW", id}) as const
-export const unFollowAC = (id: string) => ({type: "UNFOLLOW", id}) as const
-export const setUsersAC = (users: UserType[]) => ({type: "SET_USERS", users}) as const
-export const setCurrentPageAC = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage}) as const
-export const setUsersCountAC = (usersCount: number) => ({type: "SET_USERS_COUNT", usersCount}) as const
+export const follow = (id: string) => ({type: "FOLLOW", id}) as const
+export const unFollow = (id: string) => ({type: "UNFOLLOW", id}) as const
+export const setUsers = (users: UserType[]) => ({type: "SET_USERS", users}) as const
+export const setCurrentPage = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage}) as const
+export const setUsersCount = (usersCount: number) => ({type: "SET_USERS_COUNT", usersCount}) as const
+export const setIsFetching = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching}) as const

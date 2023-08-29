@@ -1,9 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import axios from 'axios';
-import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
-import s from "./Users.module.css";
-import {setCurrentPageAC} from "../../store/users/users-reducer";
 import UsersFC from './UsersFC';
 
 class UsersAPI extends React.Component<UsersPropsType> {
@@ -26,8 +23,8 @@ class UsersAPI extends React.Component<UsersPropsType> {
     }
 
     render() {
-        const {follow, unfollow, usersPart, pageSize, usersCount, currentPage} = this.props
-        return <UsersFC follow={follow} unfollow={unfollow}
+        const {follow, unFollow, usersPart, pageSize, usersCount, currentPage} = this.props
+        return <UsersFC follow={follow} unFollow={unFollow}
                         usersPart={usersPart}
                         pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
                         pageChange={this.pageChange}/>

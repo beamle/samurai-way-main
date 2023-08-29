@@ -13,7 +13,7 @@ const settings = {
 }
 
 const Users = (props: UsersPropsType) => {
-    const {follow, unfollow, setUsers} = props;
+    const {follow, unFollow, setUsers} = props;
     const getUsers = () => {
         if (props.usersPart.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users")
@@ -29,7 +29,7 @@ const Users = (props: UsersPropsType) => {
                 return <div key={el.id}>
                     {el.name}
                     {el.followed
-                        ? <button onClick={() => unfollow(el.id)}>Unfollow</button>
+                        ? <button onClick={() => unFollow(el.id)}>Unfollow</button>
                         : <button onClick={() => follow(el.id)}>Follow</button>}
 
                     <div className={s.avatar}>

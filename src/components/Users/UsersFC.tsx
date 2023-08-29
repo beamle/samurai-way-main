@@ -6,7 +6,7 @@ import {UserType} from "../../store/users/users-reducer";
 
 type UsersFCType = {
     follow: (userId: string) => void
-    unfollow: (userId: string) => void
+    unFollow: (userId: string) => void
     usersPart: UserType[]
     pageSize: number
     usersCount: number
@@ -14,7 +14,7 @@ type UsersFCType = {
     pageChange: (page: number) => void
 }
 
-const UsersFC = ({follow, unfollow, usersPart, pageSize, usersCount, currentPage, pageChange}: UsersFCType) => {
+const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage, pageChange}: UsersFCType) => {
 
     let pagesCount = Math.ceil(usersCount / pageSize)
     let pages = []
@@ -29,7 +29,7 @@ const UsersFC = ({follow, unfollow, usersPart, pageSize, usersCount, currentPage
             return <div key={el.id}>
                 {el.name}
                 {el.followed
-                    ? <button onClick={() => unfollow(el.id)}>Unfollow</button>
+                    ? <button onClick={() => unFollow(el.id)}>Unfollow</button>
                     : <button onClick={() => follow(el.id)}>Follow</button>}
 
                 <div className={s.avatar}>

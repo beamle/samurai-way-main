@@ -1,7 +1,7 @@
 import {v1} from "uuid"
 import {addCharAC, addPostAC, profileReducer} from "../store/profile/profile.reducer";
 import {addMessageAC, addMessageCharAC, dialogsReducer} from "../store/dialogs/dialogs.reducer";
-import {followAC, setCurrentPageAC, setUsersAC, setUsersCountAC, unFollowAC} from "../store/users/users-reducer";
+import {follow, setCurrentPage, setIsFetching, setUsers, setUsersCount, unFollow} from "../store/users/users-reducer";
 
 type PostDataType = {
     id: string
@@ -106,9 +106,9 @@ const store: StoreType = {
 export type ActionsType =
     ReturnType<typeof addCharAC> | ReturnType<typeof addPostAC> |
     ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC> |
-    ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> |
-    ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setUsersCountAC>
+    ReturnType<typeof follow> | ReturnType<typeof unFollow> |
+    ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching>
 // TODO take this shit out to the separate file
 
 
