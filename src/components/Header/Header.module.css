@@ -44,6 +44,16 @@
     align-self: flex-start;
 }
 
+.login a {
+    background: #ead460;
+    border-radius: 25px;
+    padding: 5px 10px 5px 10px;
+    color: #656565;
+    text-decoration: none;
+    font-size: 16px;
+
+}
+
 @media (max-width: 1250px) {
     .logo img {
         display: none;

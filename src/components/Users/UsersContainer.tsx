@@ -14,26 +14,7 @@ import axios from "axios";
 import UsersFC from "./UsersFC";
 import Preloader from "../../common/Preloader/Preloader";
 
-type MapStateToPropsType = {
-    usersPart: UserType[]
-    pageSize: number
-    usersCount: number
-    currentPage: number
-    isFetching: boolean
-}
-
-type MapStateToDispatchType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
-    setUsers: (users: UserType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setUsersCount: (usersCount: number) => void
-    setIsFetching: (isFetching: boolean) => void
-}
-export type UsersPropsType = MapStateToPropsType & MapStateToDispatchType
-
-
-class UsersAPI extends React.Component<UsersPropsType> {
+class UsersAPI extends React.Component<UsersAPIPropsType> {
 
     componentDidMount() {
         const {setUsers, setUsersCount, pageSize, setIsFetching} = this.props;
@@ -99,3 +80,23 @@ const UsersContainer = connect(mapStateToProps, {
     setIsFetching
 })(UsersAPI)
 export default UsersContainer;
+
+type MapStateToPropsType = {
+    usersPart: UserType[]
+    pageSize: number
+    usersCount: number
+    currentPage: number
+    isFetching: boolean
+}
+
+type MapStateToDispatchType = {
+    follow: (userId: string) => void
+    unFollow: (userId: string) => void
+    setUsers: (users: UserType[]) => void
+    setCurrentPage: (currentPage: number) => void
+    setUsersCount: (usersCount: number) => void
+    setIsFetching: (isFetching: boolean) => void
+}
+
+//TODO why here void ? Action creator returns actions.
+export type UsersAPIPropsType = MapStateToPropsType & MapStateToDispatchType

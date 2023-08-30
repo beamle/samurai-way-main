@@ -5,14 +5,19 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/free-regular-svg-icons/faHeart";
 import {faBell} from "@fortawesome/free-regular-svg-icons/faBell";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons/faEnvelope";
+import {NavLink} from "react-router-dom";
+import {UserDataType} from "../../auth/auth-reducer";
 
-function Header() {
-    const heart = <FontAwesomeIcon icon={faHeart}/>
-    const bell = <FontAwesomeIcon icon={faBell}/>
-    const mail = <FontAwesomeIcon icon={faEnvelope}/>
+type HeaderPropsType = {
+    isAuth: boolean
+    // setUserAuthData: (userData: UserDataType) => void
+}
+
+const Header = (props: HeaderPropsType) =>{
 
     return (
         <div className={s.header}>
+
             <div className={s.headerContainer}>
                 <div className={s.topheader}>
                     <div className={s.logoWrapper}>
@@ -22,14 +27,17 @@ function Header() {
                     {/*<div className={s.sbWrapper}>*/}
                     {/*    <div className={s.searchBar}><textarea placeholder={'search'}></textarea></div>*/}
                     {/*</div>*/}
-                    <div className={s.icWrapper}>
-                        <div className={s.ic}>{heart}</div>
-                        <div className={s.ic}>{bell}</div>
-                        <div className={s.ic}>{mail}</div>
-                        <div className={s.ic}>
-                            <div className={s.profileImg}><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_1280.png" alt="banana"/></div>
-                        </div>
+                    {/*<div className={s.icWrapper}>*/}
+                    {/*    <div className={s.ic}>{heart}</div>*/}
+                    {/*    <div className={s.ic}>{bell}</div>*/}
+                    {/*    <div className={s.ic}>{mail}</div>*/}
+                    {/*    <div className={s.ic}>*/}
+                    {/*        <div className={s.profileImg}><img src="https://cdn.pixabay.com/photo/2012/04/26/18/41/banana-42793_1280.png" alt="banana"/></div>*/}
+                    {/*    </div>*/}
 
+                    {/*</div>*/}
+                    <div className={s.login}>
+                        <NavLink to={"/login"}>Login</NavLink>
                     </div>
                 </div>
                 {/*<div className={s.subheader}>*/}
@@ -44,3 +52,6 @@ function Header() {
 
 export default Header;
 
+const heart = <FontAwesomeIcon icon={faHeart}/>
+const bell = <FontAwesomeIcon icon={faBell}/>
+const mail = <FontAwesomeIcon icon={faEnvelope}/>

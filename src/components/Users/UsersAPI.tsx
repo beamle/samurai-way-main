@@ -1,9 +1,9 @@
 import React from 'react';
-import {UsersPropsType} from "./UsersContainer";
+import {UsersAPIPropsType} from "./UsersContainer";
 import axios from 'axios';
 import UsersFC from './UsersFC';
 
-class UsersAPI extends React.Component<UsersPropsType> {
+class UsersAPI extends React.Component<UsersAPIPropsType> {
 
     componentDidMount() {
         const {setUsers, setUsersCount, pageSize} = this.props;

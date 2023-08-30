@@ -2,15 +2,18 @@ import React, {ChangeEvent} from 'react';
 import MyPosts from "../MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css";
-import {addCharAC, addPostAC} from "../../../store/profile/profile.reducer";
+import {addChar, addPost} from "../../../store/profile/profile-reducer";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import {ActionsType} from "../../../redux/store";
 import store, {StoreType} from "../../../redux/redux-store";
+import {ProfileContainerPropsType} from "../ProfileContainer/ProfileContainer";
 
-const Profile = () => {
+type ProfilePropsType = ProfileContainerPropsType
+
+const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.profile}>
-            <ProfileInfo/>
+            <ProfileInfo userProfileInfo={props.userProfileInfo}/>
             <MyPostsContainer/>
 
         </div>

@@ -9,6 +9,8 @@ import store, {StoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Users from './components/Users/Users.js';
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer/HeaderContainer";
 
 type AppPropsType = {
     store: StoreType
@@ -18,24 +20,17 @@ type PersonType = {
     age: number
 }
 function App() {
-    const {postData, newPostText} = store.getState().profilePage;
-    // const {dialogsData, messagesData, newMessageText} = store.getState().dialogsPage;
-    // const {sidebarData} = store.getState().sidebarData;
-    // console.log(messagesData)
-
-
-
 
 
     return <div className="App">
         <div className='app-wrapper'>
             {/*<Exercise/>*/}
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/dialogs/*" element={<DialogsContainer/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/dialogs/" element={<DialogsContainer/>}/>
+                    <Route path="/profile/:userId?" element={<ProfileContainer/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
                     {/*<MainContent/>*/}
                     {/*<Footer/>*/}

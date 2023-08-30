@@ -1,6 +1,6 @@
 import React from 'react';
 import MyPosts from "./MyPosts";
-import {addCharAC, addPostAC, ProfilePageType} from "../../../store/profile/profile.reducer";
+import {addChar, addPost, ProfilePageType} from "../../../store/profile/profile-reducer";
 import {StateType, StoreType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
@@ -10,9 +10,9 @@ import {Dispatch} from "redux";
 //         (store) => {
 //             const {postData, newPostText} = store.getState().profilePage
 //             const {dispatch} = store
-//             const addChar = (char: string) => dispatch(addCharAC(char))
+//             const addChar = (char: string) => dispatch(addChar(char))
 //             const updateNewPostText = (text: string) => {
-//                 let action = addPostAC(text)
+//                 let action = addPost(text)
 //                 dispatch(action)
 //             }
 //             return <MyPosts addChar={addChar} updateNewPostText={updateNewPostText}
@@ -22,16 +22,6 @@ import {Dispatch} from "redux";
 //     </StoreContext.Consumer>
 // };
 
-type MapStatePropsType = {
-    profilePage: ProfilePageType
-}
-
-type MapDispatchPropsType = {
-    addChar: (char: string) => void
-    updateNewPostText: (text: string) => void
-}
-
-export type MyPostsType = MapDispatchPropsType & MapStatePropsType
 
 const mapStateToProps = (state: StateType): MapStatePropsType  => {
     return {
@@ -42,9 +32,9 @@ const mapStateToProps = (state: StateType): MapStatePropsType  => {
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        addChar: (char: string) => dispatch(addCharAC(char)),
+        addChar: (char: string) => dispatch(addChar(char)),
         updateNewPostText: (text: string) => {
-            let action = addPostAC(text)
+            let action = addPost(text)
             dispatch(action)
         },
     }
@@ -53,3 +43,13 @@ const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
 
+
+
+type MapStatePropsType = {
+    profilePage: ProfilePageType
+}
+type MapDispatchPropsType = {
+    addChar: (char: string) => void
+    updateNewPostText: (text: string) => void
+}
+export type MyPostsType = MapDispatchPropsType & MapStatePropsType

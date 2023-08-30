@@ -1,7 +1,8 @@
 import {v1} from "uuid"
-import {addCharAC, addPostAC, profileReducer} from "../store/profile/profile.reducer";
+import {addChar, addPost, profileReducer, setUserProfileInfo} from "../store/profile/profile-reducer";
 import {addMessageAC, addMessageCharAC, dialogsReducer} from "../store/dialogs/dialogs.reducer";
 import {follow, setCurrentPage, setIsFetching, setUsers, setUsersCount, unFollow} from "../store/users/users-reducer";
+import { setUserAuthData } from "../auth/auth-reducer";
 
 type PostDataType = {
     id: string
@@ -92,23 +93,24 @@ const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._onChange()
     }
 }
 
-// export const addCharAC = (newText: string) => ({type: "ADD-CHAR" as const, newText})
-// export const addPostAC = (postText: string) => ({type: "ADD-POST" as const, postText})
+// export const addChar = (newText: string) => ({type: "ADD-CHAR" as const, newText})
+// export const addPost = (postText: string) => ({type: "ADD-POST" as const, postText})
 // export const addMessageCharAC = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
 // export const addMessageAC = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
 export type ActionsType =
-    ReturnType<typeof addCharAC> | ReturnType<typeof addPostAC> |
+    ReturnType<typeof addChar> | ReturnType<typeof addPost> |
     ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC> |
     ReturnType<typeof follow> | ReturnType<typeof unFollow> |
     ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching>
+    ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching> |
+    ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserAuthData>
 // TODO take this shit out to the separate file
 
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import {UsersPropsType} from "./UsersContainer";
+import {UsersAPIPropsType} from "./UsersContainer";
 import axios from 'axios';
 import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
 import s from "./Users.module.css";
 import {UserType} from "../../store/users/users-reducer";
+import {NavLink} from "react-router-dom";
 
 const settings = {
     withCredentials: true,
@@ -12,7 +13,7 @@ const settings = {
     }
 }
 
-const Users = (props: UsersPropsType) => {
+const Users = (props: UsersAPIPropsType) => {
     const {follow, unFollow, setUsers} = props;
     const getUsers = () => {
         if (props.usersPart.length === 0) {
@@ -33,7 +34,8 @@ const Users = (props: UsersPropsType) => {
                         : <button onClick={() => follow(el.id)}>Follow</button>}
 
                     <div className={s.avatar}>
-                        <img src={el.photos.small ? el.photos.small : ANONYMOUS_PIC} alt={"avatar"}></img>
+                        <img src={el.photos.small ? el.photos.small : ANONYMOUS_PIC} alt={"avatar"}>
+                        </img>
                     </div>
                     <div>{el.status}</div>
                 </div>

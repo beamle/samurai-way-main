@@ -1,8 +1,9 @@
 import React from "react";
 import s from "./Users.module.css";
 import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
-import {UsersPropsType} from "./UsersContainer";
+import {UsersAPIPropsType} from "./UsersContainer";
 import {UserType} from "../../store/users/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type UsersFCType = {
     follow: (userId: string) => void
@@ -33,11 +34,13 @@ const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage
                     : <button onClick={() => follow(el.id)}>Follow</button>}
 
                 <div className={s.avatar}>
-                    <img src={el.photos.small ? el.photos.small : ANONYMOUS_PIC} alt={"avatar"}></img>
+                    <NavLink to={`/profile/${el.id}`}>
+                        <img src={el.photos.small ? el.photos.small : ANONYMOUS_PIC} alt={"avatar"}></img>
+                    </NavLink>
                 </div>
                 <div>{el.status}</div>
             </div>
         })}
     </div>
 }
-export default UsersFC;
+    export default UsersFC;

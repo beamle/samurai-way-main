@@ -1,6 +1,25 @@
-import {addPostAC, profileReducer} from "./profile.reducer";
+import {addPost, profileReducer} from "./profile-reducer";
 
-
+const dummyExample = {
+    userId: 22,
+    lookingForAJob: true,
+    lookingForAJobDescription: 'string',
+    fullName: 'string',
+    contacts: {
+        github: 'string',
+        vk: 'string',
+        facebook: 'string',
+        instagram: 'string',
+        twitter: 'string',
+        website: 'string',
+        youtube: 'string',
+        mainLink: 'string',
+    },
+    photos: {
+        small: '',
+        large: ''
+    }
+}
 test('the array of posts should be increased', () => {
     let startState = {
             postData: [
@@ -8,10 +27,11 @@ test('the array of posts should be increased', () => {
                 {id: "2", message: 'It"s my first post?', like: 3},
                 {id: "3", message: 'I like bananas!?', like: 2},
                 {id: "4", message: 'Wooo, that"s nice!?', like: 211},],
-                newPostText: 'abc'
+                newPostText: 'abc',
+                userProfileInfo: dummyExample
     }
     const message = "testing"
-    const action = addPostAC(message)
+    const action = addPost(message)
 
     let endState = profileReducer(startState, action);
 

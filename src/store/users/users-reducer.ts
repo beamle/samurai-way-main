@@ -9,7 +9,6 @@ const initialState = {
     usersCount: 11,
     currentPage: 1,
     isFetching: true
-
 }
 
 type InitialStateType = typeof initialState
