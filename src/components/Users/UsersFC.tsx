@@ -4,16 +4,8 @@ import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
 import {UsersAPIPropsType} from "./UsersContainer";
 import {UserType} from "../../store/users/users-reducer";
 import {NavLink} from "react-router-dom";
-
-type UsersFCType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
-    usersPart: UserType[]
-    pageSize: number
-    usersCount: number
-    currentPage: number
-    pageChange: (page: number) => void
-}
+import axios from "axios";
+import {usersAPI} from "../../api/users-api";
 
 const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage, pageChange}: UsersFCType) => {
 
@@ -27,11 +19,24 @@ const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage
         {pages.map(page => <span onClick={() => pageChange(page)}
                                  className={page === currentPage ? s.selectedPage : ''}>{page}</span>)}
         {usersPart.map(el => {
+            const unFollowUser = () => {
+                usersAPI.unFollowUser(el.id)
+                    .then(res => {
+                        if(res.resultCode === 0) unFollow(el.id)
+                    })
+            }
+            const followUser = () => {
+                usersAPI.followUser(el.id)
+                    .then(res => {
+                        if(res.resultCode === 0) follow(el.id)
+                    })
+            }
             return <div key={el.id}>
                 {el.name}
                 {el.followed
-                    ? <button onClick={() => unFollow(el.id)}>Unfollow</button>
-                    : <button onClick={() => follow(el.id)}>Follow</button>}
+
+                    ? <button onClick={unFollowUser}>Unfollow</button>
+                    : <button onClick={followUser}>Follow</button>}
 
                 <div className={s.avatar}>
                     <NavLink to={`/profile/${el.id}`}>
@@ -43,4 +48,14 @@ const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage
         })}
     </div>
 }
-    export default UsersFC;
+export default UsersFC;
+
+type UsersFCType = {
+    follow: (userId: string) => void
+    unFollow: (userId: string) => void
+    usersPart: UserType[]
+    pageSize: number
+    usersCount: number
+    currentPage: number
+    pageChange: (page: number) => void
+}

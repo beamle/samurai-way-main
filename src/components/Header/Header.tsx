@@ -13,7 +13,7 @@ type HeaderPropsType = {
     // setUserAuthData: (userData: UserDataType) => void
 }
 
-const Header = (props: HeaderPropsType) =>{
+const Header = ({isAuth}: HeaderPropsType) =>{
 
     return (
         <div className={s.header}>
@@ -37,7 +37,7 @@ const Header = (props: HeaderPropsType) =>{
 
                     {/*</div>*/}
                     <div className={s.login}>
-                        <NavLink to={"/login"}>Login</NavLink>
+                        {!isAuth ? <NavLink to={"/login"}>Login</NavLink> : "Logged in"}
                     </div>
                 </div>
                 {/*<div className={s.subheader}>*/}

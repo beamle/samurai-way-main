@@ -11,7 +11,7 @@ const initialState = {
     isFetching: true
 }
 
-type InitialStateType = typeof initialState
+export type UsersReducerType = typeof initialState
 
 export type UserType = {
     id: string
@@ -25,7 +25,7 @@ export type UserType = {
     }
 }
 
-export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const usersReducer = (state: UsersReducerType = initialState, action: ActionsType): UsersReducerType => {
     switch (action.type) {
         case "FOLLOW":
             return {...state, users: state.users.map(el => el.id === action.id ? {...el, followed: true} : el)}

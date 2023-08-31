@@ -13,26 +13,33 @@ import {
 import axios from "axios";
 import UsersFC from "./UsersFC";
 import Preloader from "../../common/Preloader/Preloader";
+import {usersAPI} from "../../api/users-api";
 
 class UsersAPI extends React.Component<UsersAPIPropsType> {
 
     componentDidMount() {
-        const {setUsers, setUsersCount, pageSize, setIsFetching} = this.props;
+        const {setUsers, currentPage, setUsersCount, pageSize, setIsFetching} = this.props;
         setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${pageSize}`)
-            .then(res => {setIsFetching(false); return res})
-            .then(res => {
-                setUsers(res.data.items)
-                return res
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                setIsFetching(false);
+                return data
             })
-            .then(res => setUsersCount(res.data.totalCount - 24799))
+            .then(data => {
+                setUsers(data.items)
+                return data
+            })
+            .then(data => setUsersCount(data.totalCount - 24799))
     }
 
     pageChange = (page: number) => {
         const {setUsers, usersCount, setCurrentPage, pageSize, setIsFetching} = this.props;
         setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`)
-            .then(res => {setIsFetching(false); return res})
+        usersAPI.getUsers(page, pageSize)
+            .then(res => {
+                setIsFetching(false);
+                return res
+            })
             .then(res => setUsers(res.data.items))
             .then(() => setCurrentPage(page))
     }
@@ -41,10 +48,10 @@ class UsersAPI extends React.Component<UsersAPIPropsType> {
         const {follow, unFollow, usersPart, pageSize, usersCount, currentPage, isFetching} = this.props
         return <>
             {isFetching ? <Preloader isFetching={isFetching}/> :
-            <UsersFC follow={follow} unFollow={unFollow}
-                     usersPart={usersPart}
-                     pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
-                     pageChange={this.pageChange}/>
+                <UsersFC follow={follow} unFollow={unFollow}
+                         usersPart={usersPart}
+                         pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
+                         pageChange={this.pageChange}/>
             }
         </>
     };
