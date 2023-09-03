@@ -107,9 +107,9 @@ const store: StoreType = {
 export type ActionsType =
     ReturnType<typeof addChar> | ReturnType<typeof addPost> |
     ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC> |
-    ReturnType<typeof follow> | ReturnType<typeof unFollow> |
-    ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching> |
+    // ReturnType<typeof follow> | ReturnType<typeof unFollow> |
+    // ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
+    // ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching> |
     ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserAuthData>
 // TODO take this shit out to the separate file
 

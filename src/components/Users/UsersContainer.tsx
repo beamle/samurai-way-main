@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {StateType} from "../../redux/redux-store";
 import {
     follow,
-    setCurrentPage,
+    setCurrentPage, setFollowingInProgress,
     setIsFetching,
     setUsers,
     setUsersCount,
@@ -40,18 +40,20 @@ class UsersAPI extends React.Component<UsersAPIPropsType> {
                 setIsFetching(false);
                 return res
             })
-            .then(res => setUsers(res.data.items))
+            .then(res => {
+                setUsers(res.items)
+            })
             .then(() => setCurrentPage(page))
     }
 
     render() {
-        const {follow, unFollow, usersPart, pageSize, usersCount, currentPage, isFetching} = this.props
+        const {follow, unFollow, usersPart, pageSize, usersCount, currentPage, isFetching, followInProgress, setFollowingInProgress} = this.props
         return <>
             {isFetching ? <Preloader isFetching={isFetching}/> :
                 <UsersFC follow={follow} unFollow={unFollow}
                          usersPart={usersPart}
                          pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
-                         pageChange={this.pageChange}/>
+                         pageChange={this.pageChange} followInProgress={followInProgress} setFollowingInProgress={setFollowingInProgress}/>
             }
         </>
     };
@@ -63,7 +65,8 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         usersCount: state.usersPage.usersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -84,7 +87,8 @@ const UsersContainer = connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setUsersCount,
-    setIsFetching
+    setIsFetching,
+    setFollowingInProgress
 })(UsersAPI)
 export default UsersContainer;
 
@@ -94,6 +98,7 @@ type MapStateToPropsType = {
     usersCount: number
     currentPage: number
     isFetching: boolean
+    followInProgress: string[]
 }
 
 type MapStateToDispatchType = {
@@ -103,6 +108,7 @@ type MapStateToDispatchType = {
     setCurrentPage: (currentPage: number) => void
     setUsersCount: (usersCount: number) => void
     setIsFetching: (isFetching: boolean) => void
+    setFollowingInProgress: (userId: string, isFetching: boolean) => void
 }
 
 //TODO why here void ? Action creator returns actions.
