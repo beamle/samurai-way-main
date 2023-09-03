@@ -1,4 +1,4 @@
-import {ActionsType} from "../../redux/store";
+
 import {v1} from "uuid";
 
 export type PostDataType = {
@@ -83,3 +83,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 export const addChar = (newText: string) => ({type: "ADD-CHAR" as const, newText})
 export const addPost = (postText: string) => ({type: "ADD-POST" as const, postText})
 export const setUserProfileInfo = (userInfo: UserProfileInfoType) => ({type: "SET-PROFILE-INFO", userInfo} as const)
+
+type ActionsType =
+    ReturnType<typeof addChar> | ReturnType<typeof addPost> | ReturnType<typeof setUserProfileInfo>

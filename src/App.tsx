@@ -7,7 +7,7 @@ import Profile from "./components/profile/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import store, {StoreType} from "./redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Users from './components/Users/Users.js';
+import Users from './trash/Users.js';
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer/HeaderContainer";

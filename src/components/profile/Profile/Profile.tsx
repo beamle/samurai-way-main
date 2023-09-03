@@ -4,7 +4,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css";
 import {addChar, addPost} from "../../../store/profile/profile-reducer";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
-import {ActionsType} from "../../../redux/store";
+import {ActionsType} from "../../../trash/store";
 import store, {StoreType} from "../../../redux/redux-store";
 import {ProfileContainerPropsType} from "../ProfileContainer/ProfileContainer";
 

@@ -1,17 +1,6 @@
-import {ActionsType} from "../../redux/store";
 import {v1} from "uuid";
 
-export const addMessageCharAC = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
-export const addMessageAC = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
-export type DialogDataType = {
-    id: string
-    name: string
-}
-export type MessageDataType = {
-    id: string
-    message: string
-}
 // export type DialogsPageType = {
 //     dialogsData: DialogDataType[]
 //     messagesData: MessageDataType[]
@@ -46,3 +35,17 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
             return state
     }
 }
+
+export const addMessageCharAC = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
+export const addMessageAC = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
+
+export type DialogDataType = {
+    id: string
+    name: string
+}
+export type MessageDataType = {
+    id: string
+    message: string
+}
+
+type ActionsType = ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC>

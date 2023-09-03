@@ -8,7 +8,7 @@ const initialState = {
     usersCount: 11,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: ['']
+    followingInProgress: [] as string[]
 }
 
 export type UsersReducerType = typeof initialState
@@ -32,7 +32,6 @@ export const usersReducer = (state: UsersReducerType = initialState, action: Act
         case "UNFOLLOW":
             return {...state, users: state.users.map(el => el.id === action.id ? {...el, followed: false} : el)}
         case "SET_USERS":
-            // return {...state, users: [...state.users, ...action.users]}
             return {...state, users: action.users}
         case "SET_CURRENT_PAGE":
             return {...state, currentPage: action.currentPage}

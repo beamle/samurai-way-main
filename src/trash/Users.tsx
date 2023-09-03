@@ -1,9 +1,9 @@
 import React from 'react';
-import {UsersAPIPropsType} from "./UsersContainer";
+import {UsersAPIPropsType} from "../components/Users/UsersContainer";
 import axios from 'axios';
-import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
-import s from "./Users.module.css";
-import {UserType} from "../../store/users/users-reducer";
+import {ANONYMOUS_PIC} from "../assets/pictures/picturesUrl";
+import s from "../components/Users/Users.module.css";
+import {UserType} from "../store/users/users-reducer";
 import {NavLink} from "react-router-dom";
 
 

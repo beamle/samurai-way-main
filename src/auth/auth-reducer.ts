@@ -1,5 +1,4 @@
-import {StateType} from "../redux/redux-store";
-import {ActionsType} from "../redux/store";
+
 
 export type AuthReducerType = typeof initialState
 
@@ -26,3 +25,5 @@ export const authReducer = (state: AuthReducerType = initialState, actions: Acti
 }
 
 export const setUserAuthData = (userData: UserDataType) => ({type: "SET-USER-DATA", userData}) as const
+
+type ActionsType = ReturnType<typeof setUserAuthData>

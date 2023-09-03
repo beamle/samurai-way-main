@@ -44,12 +44,6 @@ export default connect(mapStateToProps, {
 })(WithUrlDataContainerComponent)
 
 
-// const ProfileContainer = connect(mapStateToProps, {
-//     setUserProfileInfo
-// })(ProfileAPI)
-// export default ProfileContainer;
-
-
 type StringIdParams = {
     stringId: string;
 };

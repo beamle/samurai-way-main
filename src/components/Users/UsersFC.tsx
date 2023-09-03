@@ -1,10 +1,8 @@
 import React from "react";
 import s from "./Users.module.css";
 import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
-import {UsersAPIPropsType} from "./UsersContainer";
-import {setFollowingInProgress, UserType} from "../../store/users/users-reducer";
+import {UserType} from "../../store/users/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 import {usersAPI} from "../../api/users-api";
 
 const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage, pageChange, followInProgress, setFollowingInProgress}: UsersFCPropsType) => {
