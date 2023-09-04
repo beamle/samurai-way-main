@@ -2,18 +2,6 @@ import React, {ChangeEvent, createRef} from 'react';
 import Post from "./Post/Post";
 import {MyPostsType} from "./MyPostsContainer";
 
-// type MyPostsType = {
-//     postData: {
-//         id: string
-//         message: string
-//         like: number
-//     }[]
-//     newPostText: string
-//     updateNewPostText: (text: string) => void
-//     addChar: (char: string) => void
-// }
-
-
 const MyPosts = (props: MyPostsType) => {
     const {updateNewPostText, addChar} = props
     const {postData, newPostText} = props.profilePage
