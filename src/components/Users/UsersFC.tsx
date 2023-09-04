@@ -12,7 +12,7 @@ const UsersFC = ({followUserTC, unFollowUserTC, usersPart, pageSize, usersCount,
     }
 
     return <div>
-        {pages.map(page => <span onClick={() => pageChange(page)}
+        {pages.map(page => <span key={page} onClick={() => pageChange(page)}
                                  className={page === currentPage ? s.selectedPage : ''}>{page}</span>)}
         {usersPart.map(el => {
             const unFollowUser = () => {

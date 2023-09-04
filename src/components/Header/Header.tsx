@@ -14,7 +14,6 @@ type HeaderPropsType = {
 }
 
 const Header = ({isAuth}: HeaderPropsType) =>{
-
     return (
         <div className={s.header}>
 

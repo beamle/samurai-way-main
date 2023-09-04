@@ -11,6 +11,7 @@ import Users from './trash/Users.js';
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer/HeaderContainer";
+import Login from "./components/Login/Login";
 
 type AppPropsType = {
     store: StoreType
@@ -32,8 +33,7 @@ function App() {
                     <Route path="/dialogs/" element={<DialogsContainer/>}/>
                     <Route path="/profile/:userId?" element={<ProfileContainer/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
-                    {/*<MainContent/>*/}
-                    {/*<Footer/>*/}
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
             </div>
         </div>

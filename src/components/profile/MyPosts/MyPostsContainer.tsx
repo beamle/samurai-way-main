@@ -5,29 +5,9 @@ import {StateType, StoreType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-// export  const MyPostsContainer = () => {
-//     return <StoreContext.Consumer>{
-//         (store) => {
-//             const {postData, newPostText} = store.getState().profilePage
-//             const {dispatch} = store
-//             const addChar = (char: string) => dispatch(addChar(char))
-//             const updateNewPostText = (text: string) => {
-//                 let action = addPost(text)
-//                 dispatch(action)
-//             }
-//             return <MyPosts addChar={addChar} updateNewPostText={updateNewPostText}
-//                             postData={postData} newPostText={newPostText}/>
-//         }
-//     }
-//     </StoreContext.Consumer>
-// };
-
-
 const mapStateToProps = (state: StateType): MapStatePropsType  => {
     return {
         profilePage: state.profilePage
-        // newPostText: state.profilePage.newPostText,
-        // postData: state.profilePage.postData,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
@@ -42,7 +22,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
-
 
 
 type MapStatePropsType = {

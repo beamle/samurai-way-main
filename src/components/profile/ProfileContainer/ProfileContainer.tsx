@@ -1,27 +1,25 @@
 import React from 'react';
 import s from "../Profile/Profile.module.css";
-import axios from "axios";
 import {StateType} from "../../../redux/redux-store";
 import Profile from "../Profile/Profile";
-import {setUserProfileInfo, UserProfileInfoType} from "../../../store/profile/profile-reducer";
+import {getUserProfileTC, UserProfileInfoType} from "../../../store/profile/profile-reducer";
 import {connect} from "react-redux";
-import {Params, useParams} from 'react-router-dom';
+import {Navigate, Params, useParams} from 'react-router-dom';
+
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
-        const {setUserProfileInfo} = this.props
+        const {getUserProfileTC, isAuth} = this.props
         let userId = this.props.params?.userId
         if (!userId) {
             userId = '2'
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(res => {
-                setUserProfileInfo(res.data)
-            })
-
+        getUserProfileTC(userId)
     }
 
     render() {
+        const {isAuth} = this.props;
+        if (!isAuth) return <Navigate to={"/login"}></Navigate>
         return (
             <div className={s.profile}>
                 <Profile {...this.props}/>
@@ -29,18 +27,17 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 }
 
-const mapStateToProps = (state: StateType): MapPropToStateType => {
-    return {
-        userProfileInfo: state.profilePage.userProfileInfo
-    }
-}
+const mapStateToProps = (state: StateType): MapPropToStateType => ({
+    userProfileInfo: state.profilePage.userProfileInfo,
+    isAuth: state.auth.isAuth
+})
 
 const WithUrlDataContainerComponent = (props: ProfileContainerPropsType) => {
     return <ProfileContainer {...props} params={useParams<{ stringId: string }>()}/>
 }
 
 export default connect(mapStateToProps, {
-    setUserProfileInfo
+    getUserProfileTC
 })(WithUrlDataContainerComponent)
 
 
@@ -50,9 +47,11 @@ type StringIdParams = {
 
 type MapPropToStateType = {
     userProfileInfo: UserProfileInfoType
+    isAuth: boolean
 }
 type MapStateToDispatchType = {
-    setUserProfileInfo: (userInfo: UserProfileInfoType) => void
+    // setUserProfileInfo: (userInfo: UserProfileInfoType) => void
+    getUserProfileTC: (userId: string) => void
 }
 type RouterType = {
     params?: Params

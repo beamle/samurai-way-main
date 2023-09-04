@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import UsersFC from "./UsersFC";
 import Preloader from "../../common/Preloader/Preloader";
+import {Navigate} from "react-router-dom";
 
 class UsersAPI extends React.Component<UsersAPIPropsType> {
 
@@ -28,13 +29,15 @@ class UsersAPI extends React.Component<UsersAPIPropsType> {
 
     render() {
         const {usersPart, pageSize, usersCount, currentPage, isFetching, followInProgress,
-            unFollowUserTC, followUserTC} = this.props
+            unFollowUserTC, followUserTC, isAuth} = this.props
+        if(!isAuth) return <Navigate to={"/login"}/>
         return <>
             {isFetching ? <Preloader isFetching={isFetching}/> :
                 <UsersFC usersPart={usersPart}
-                         pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
-                         pageChange={this.pageChange} followInProgress={followInProgress}
-                         unFollowUserTC={unFollowUserTC} followUserTC={followUserTC}/>
+                                    pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
+                                    pageChange={this.pageChange} followInProgress={followInProgress}
+                                    unFollowUserTC={unFollowUserTC} followUserTC={followUserTC}/>
+
             }
         </>
     };
@@ -47,7 +50,8 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
         usersCount: state.usersPage.usersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followInProgress: state.usersPage.followingInProgress
+        followInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -72,6 +76,7 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
     followInProgress: string[]
+    isAuth: boolean
 }
 
 type MapStateToDispatchType = {

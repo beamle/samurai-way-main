@@ -1,5 +1,7 @@
 
 import {v1} from "uuid";
+import {profileAPI} from "../../api/profileAPI";
+import {Dispatch} from "redux";
 
 export type PostDataType = {
     id: string
@@ -65,7 +67,7 @@ const initialState: ProfilePageType = {
     userProfileInfo: dummyExample
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {id: v1(), message: action.postText, like: 222}
@@ -80,9 +82,20 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
     }
 }
 
+//AC
 export const addChar = (newText: string) => ({type: "ADD-CHAR" as const, newText})
 export const addPost = (postText: string) => ({type: "ADD-POST" as const, postText})
 export const setUserProfileInfo = (userInfo: UserProfileInfoType) => ({type: "SET-PROFILE-INFO", userInfo} as const)
 
-type ActionsType =
+//TH
+export const getUserProfileTC = (userId: string) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
+    profileAPI.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfileInfo(res.data))
+        })
+}
+
+//Types
+type ProfileReducerActionsType =
     ReturnType<typeof addChar> | ReturnType<typeof addPost> | ReturnType<typeof setUserProfileInfo>
+

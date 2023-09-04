@@ -30,7 +30,7 @@ const MyPosts = (props: MyPostsType) => {
         }
     }
 
-    let showPost = postData.map(post => <Post id={post.id} message={post.message} like={post.like}/>)
+    let showPost = postData.map(post => <Post key={post.id} id={post.id} message={post.message} like={post.like}/>)
 
     return (
         <div>

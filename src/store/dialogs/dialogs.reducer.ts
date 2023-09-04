@@ -36,8 +36,8 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
     }
 }
 
-export const addMessageCharAC = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
-export const addMessageAC = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
+export const addMessageChar = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
+export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
 export type DialogDataType = {
     id: string
@@ -48,4 +48,4 @@ export type MessageDataType = {
     message: string
 }
 
-type ActionsType = ReturnType<typeof addMessageCharAC> | ReturnType<typeof addMessageAC>
+type ActionsType = ReturnType<typeof addMessageChar> | ReturnType<typeof addMessage>
