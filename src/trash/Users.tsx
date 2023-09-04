@@ -3,13 +3,10 @@ import {UsersAPIPropsType} from "../components/Users/UsersContainer";
 import axios from 'axios';
 import {ANONYMOUS_PIC} from "../assets/pictures/picturesUrl";
 import s from "../components/Users/Users.module.css";
-import {UserType} from "../store/users/users-reducer";
-import {NavLink} from "react-router-dom";
-
 
 
 const Users = (props: UsersAPIPropsType) => {
-    const {follow, unFollow, setUsers} = props;
+    const {setUsers} = props;
     const getUsers = () => {
         debugger
         if (props.usersPart.length === 0) {

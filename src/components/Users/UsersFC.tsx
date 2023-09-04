@@ -3,9 +3,8 @@ import s from "./Users.module.css";
 import {ANONYMOUS_PIC} from "../../assets/pictures/picturesUrl";
 import {UserType} from "../../store/users/users-reducer";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/users-api";
 
-const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage, pageChange, followInProgress, setFollowingInProgress}: UsersFCPropsType) => {
+const UsersFC = ({followUserTC, unFollowUserTC, usersPart, pageSize, usersCount, currentPage, pageChange, followInProgress}: UsersFCPropsType) => {
     let pagesCount = Math.ceil(usersCount / pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -17,20 +16,10 @@ const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage
                                  className={page === currentPage ? s.selectedPage : ''}>{page}</span>)}
         {usersPart.map(el => {
             const unFollowUser = () => {
-                setFollowingInProgress(el.id, true)
-                usersAPI.unFollowUser(el.id)
-                    .then(res => {
-                        if(res.resultCode === 0) unFollow(el.id)
-                        setFollowingInProgress(el.id, false)
-                    })
+                unFollowUserTC(el.id)
             }
             const followUser = () => {
-                setFollowingInProgress(el.id, true)
-                usersAPI.followUser(el.id)
-                    .then(res => {
-                        if(res.resultCode === 0) follow(el.id)
-                        setFollowingInProgress(el.id, false)
-                    })
+                followUserTC(el.id)
             }
             return <div key={el.id}>
                 {el.name}
@@ -52,13 +41,12 @@ const UsersFC = ({follow, unFollow, usersPart, pageSize, usersCount, currentPage
 export default UsersFC;
 
 type UsersFCPropsType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
     usersPart: UserType[]
     pageSize: number
     usersCount: number
     currentPage: number
     pageChange: (page: number) => void
     followInProgress: string[]
-    setFollowingInProgress: (userId: string, isFetching: boolean) => void
+    unFollowUserTC: (userId: string) => void
+    followUserTC: (userId: string) => void
 }

@@ -7,18 +7,8 @@ import {addMessageAC, addMessageCharAC} from "../../store/dialogs/dialogs.reduce
 import {StoreType} from "../../redux/redux-store";
 import {DialogsPropsType} from "./DialogsContainer";
 
-// type DialogsPropsType = {
-//     dialogsData: DialogsDataType
-//     messagesData: MessagesDataType
-//     newMessageText: string
-//     addMessage: (message: string) => void
-//     addMessageCharacter: (char:string) => void
-// }
-
-
 const Dialogs = (props: DialogsPropsType) => {
     const {dialogsData, messagesData, newMessageText} = props.dialogsPage
-    const {addMessageCharacter, addMessage} = props
 
     const messageRef = useRef<HTMLInputElement>(null)
     const addMessageChar = (e: ChangeEvent<HTMLInputElement>) => props.addMessageCharacter(e.currentTarget.value)

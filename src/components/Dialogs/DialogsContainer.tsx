@@ -32,6 +32,8 @@ import {Dispatch} from "redux";
 //
 // };
 
+
+//types
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
 }
@@ -43,6 +45,7 @@ type MapDispatchToPropsType = {
 
 export type DialogsPropsType = MapDispatchToPropsType & MapStatePropsType
 
+//MSP & MDP
 const mapStateToProps = (state: StateType): MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage

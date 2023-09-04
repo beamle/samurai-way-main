@@ -2,58 +2,39 @@ import React from 'react';
 import {connect} from "react-redux";
 import {StateType} from "../../redux/redux-store";
 import {
-    follow,
+    follow, followUserTC, getUsersTC,
     setCurrentPage, setFollowingInProgress,
     setIsFetching,
     setUsers,
     setUsersCount,
-    unFollow,
+    unFollow, unFollowUserTC,
     UserType
 } from "../../store/users/users-reducer";
 import axios from "axios";
 import UsersFC from "./UsersFC";
 import Preloader from "../../common/Preloader/Preloader";
-import {usersAPI} from "../../api/users-api";
 
 class UsersAPI extends React.Component<UsersAPIPropsType> {
 
     componentDidMount() {
-        const {setUsers, currentPage, setUsersCount, pageSize, setIsFetching} = this.props;
-        setIsFetching(true)
-        usersAPI.getUsers(currentPage, pageSize)
-            .then(data => {
-                setIsFetching(false);
-                return data
-            })
-            .then(data => {
-                setUsers(data.items)
-                return data
-            })
-            .then(data => setUsersCount(data.totalCount - 24799))
+        const {currentPage, pageSize, getUsersTC} = this.props;
+        getUsersTC(currentPage, pageSize)
     }
 
     pageChange = (page: number) => {
-        const {setUsers, usersCount, setCurrentPage, pageSize, setIsFetching} = this.props;
-        setIsFetching(true)
-        usersAPI.getUsers(page, pageSize)
-            .then(res => {
-                setIsFetching(false);
-                return res
-            })
-            .then(res => {
-                setUsers(res.items)
-            })
-            .then(() => setCurrentPage(page))
+        const {pageSize, getUsersTC} = this.props;
+        getUsersTC(page, pageSize)
     }
 
     render() {
-        const {follow, unFollow, usersPart, pageSize, usersCount, currentPage, isFetching, followInProgress, setFollowingInProgress} = this.props
+        const {usersPart, pageSize, usersCount, currentPage, isFetching, followInProgress,
+            unFollowUserTC, followUserTC} = this.props
         return <>
             {isFetching ? <Preloader isFetching={isFetching}/> :
-                <UsersFC follow={follow} unFollow={unFollow}
-                         usersPart={usersPart}
+                <UsersFC usersPart={usersPart}
                          pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
-                         pageChange={this.pageChange} followInProgress={followInProgress} setFollowingInProgress={setFollowingInProgress}/>
+                         pageChange={this.pageChange} followInProgress={followInProgress}
+                         unFollowUserTC={unFollowUserTC} followUserTC={followUserTC}/>
             }
         </>
     };
@@ -70,17 +51,6 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
     }
 }
 
-// const mapStateToDispatch = (dispatch: Dispatch): MapStateToDispatchType => {
-//     return {
-//         follow: followAC,
-//         unfollow: unFollowAC,
-//         setUsers: setUsersAC,
-//         setCurrentPage: setCurrentPageAC,
-//         setUsersCount: setUsersCountAC,
-//         setIsFetching: setIsFetchingAC
-//     }
-// }
-
 const UsersContainer = connect(mapStateToProps, {
     follow,
     unFollow,
@@ -88,7 +58,10 @@ const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setUsersCount,
     setIsFetching,
-    setFollowingInProgress
+    setFollowingInProgress,
+    getUsersTC,
+    unFollowUserTC,
+    followUserTC
 })(UsersAPI)
 export default UsersContainer;
 
@@ -102,13 +75,13 @@ type MapStateToPropsType = {
 }
 
 type MapStateToDispatchType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setUsersCount: (usersCount: number) => void
     setIsFetching: (isFetching: boolean) => void
-    setFollowingInProgress: (userId: string, isFetching: boolean) => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
+    unFollowUserTC: (userId: string) => void
+    followUserTC: (userId: string) => void
 }
 
 //TODO why here void ? Action creator returns actions.
