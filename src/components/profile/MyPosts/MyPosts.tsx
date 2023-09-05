@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import {MyPostsType} from "./MyPostsContainer";
 
 const MyPosts = (props: MyPostsType) => {
-    const {updateNewPostText, addChar} = props
+    const {addPost, addChar} = props
     const {postData, newPostText} = props.profilePage
     let postMessageRef = createRef<HTMLTextAreaElement>();
 
@@ -14,7 +14,7 @@ const MyPosts = (props: MyPostsType) => {
     const onClickPostAddHandler = () => {
         if (postMessageRef.current) {
             let text = postMessageRef.current?.value
-            updateNewPostText(text)
+            addPost(text)
         }
     }
 

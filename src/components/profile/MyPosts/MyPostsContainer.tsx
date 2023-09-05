@@ -10,17 +10,17 @@ const mapStateToProps = (state: StateType): MapStatePropsType  => {
         profilePage: state.profilePage
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        addChar: (char: string) => dispatch(addChar(char)),
-        updateNewPostText: (text: string) => {
-            let action = addPost(text)
-            dispatch(action)
-        },
-    }
-}
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
-
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//     return {
+//         // addChar: (char: string) => dispatch(addChar(char)),
+//         addChar,
+//         // updateNewPostText: (text: string) => {
+//         //     let action = addPost(text)
+//         //     dispatch(action)
+//         // },
+//     }
+// }
+const MyPostsContainer = connect(mapStateToProps, {addChar, addPost})(MyPosts);
 export default MyPostsContainer;
 
 
@@ -29,6 +29,7 @@ type MapStatePropsType = {
 }
 type MapDispatchPropsType = {
     addChar: (char: string) => void
-    updateNewPostText: (text: string) => void
+    // updateNewPostText: (text: string) => void
+    addPost: (text: string) => void
 }
 export type MyPostsType = MapDispatchPropsType & MapStatePropsType

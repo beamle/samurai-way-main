@@ -8,7 +8,7 @@ type MSTPType = {
     isAuth: boolean
 }
 
-const mstp = (state:StateType):MSTPType => {
+const mapStateToProps = (state:StateType):MSTPType => {
    return {
        isAuth: state.auth.isAuth
    }
@@ -28,5 +28,5 @@ export function withAuthRedirect<T>(Component: any) {
     }
 
 
-    return connect(mstp)(RedirectComponent)
+    return connect(mapStateToProps)(RedirectComponent)
 }

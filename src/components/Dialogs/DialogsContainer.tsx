@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
+
 //types
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
