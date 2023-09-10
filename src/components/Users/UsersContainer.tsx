@@ -89,5 +89,4 @@ type MapStateToDispatchType = {
     followUserTC: (userId: string) => void
 }
 
-//TODO why here void ? Action creator returns actions.
 export type UsersAPIPropsType = MapStateToPropsType & MapStateToDispatchType

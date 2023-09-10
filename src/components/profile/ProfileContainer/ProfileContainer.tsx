@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {Navigate, Params, useParams} from 'react-router-dom';
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import Dialogs from "../../Dialogs/Dialogs";
+import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
@@ -55,3 +56,9 @@ type RouterType = {
     params?: Params
 }
 export type ProfileContainerPropsType = MapPropToStateType & MapStateToDispatchType & RouterType
+//
+// export default compose<() => JSX.Element>(
+//     connect(mapStateToProps, {getUserProfileTC}),
+//     withAuthRedirect,
+//     // WithUrlDataContainerComponent,
+// )(ProfileContainer)
