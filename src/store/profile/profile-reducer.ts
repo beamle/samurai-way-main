@@ -3,38 +3,7 @@ import {v1} from "uuid";
 import {profileAPI} from "../../api/profileAPI";
 import {Dispatch} from "redux";
 
-export type PostDataType = {
-    id: string
-    message: string
-    like: number
-}[]
 
-export type UserProfileInfoType = {
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: {
-        github: string
-        vk: string
-        facebook: string
-        instagram: string
-        twitter: string
-        website: string
-        youtube: string
-        mainLink: string
-    }
-    photos: {
-        small: (string)
-        large: (string)
-    }
-}
-export type ProfilePageType = {
-    postData: PostDataType
-    newPostText: string
-    userProfileInfo: UserProfileInfoType
-    status: string
-}
 
 
 const dummyExample = {
@@ -93,20 +62,20 @@ export const setUserProfileInfo = (userInfo: UserProfileInfoType) => ({type: "SE
 export const setUserStatus = (status: string) => ({type: "SET-USER-STATUS", status} as const)
 
 //TC
-export const getUserProfileTC = (userId: string) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
+export const getUserProfileTC = (userId: number) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
     profileAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfileInfo(res.data))
         })
 }
-export const getUserStatusTC = (userId: string) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
+export const getUserStatusTC = (userId: number) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
     profileAPI.getStatus(userId)
         .then(res => {
                 dispatch(setUserStatus(res.data))
         })
 }
 
-export const updateUserStatusTC = (status: string) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
+export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then(res => {
             if(res.data.resultCode === 0) {
@@ -121,3 +90,35 @@ type ProfileReducerActionsType =
     ReturnType<typeof addChar> | ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserStatus>
 
+export type PostDataType = {
+    id: string
+    message: string
+    like: number
+}[]
+
+export type UserProfileInfoType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
+    photos: {
+        small: (string)
+        large: (string)
+    }
+}
+export type ProfilePageType = {
+    postData: PostDataType
+    newPostText: string
+    userProfileInfo: UserProfileInfoType
+    status: string
+}

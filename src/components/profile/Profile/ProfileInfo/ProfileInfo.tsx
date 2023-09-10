@@ -1,13 +1,14 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css";
-import {UserProfileInfoType} from "../../../../store/profile/profile-reducer";
+import {getUserStatusTC, UserProfileInfoType} from "../../../../store/profile/profile-reducer";
 import Preloader from "../../../../common/Preloader/Preloader";
 import ProfileStatus from "../../ProfileStatus/ProfileStatus";
 
 type ProfileInfoPropsType = {
     userProfileInfo: UserProfileInfoType
-    getUserStatusTC: (userId: string) => void
+    status: string
     updateUserStatusTC: (status: string) => void
+    getUserStatusTC: (userId: number) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -20,8 +21,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             {photos.small ? <img src={photos.small} alt={"pic"}/> : null}
             name: {fullName}
             lookinfforjob: {lookingForAJob}
-            <ProfileStatus getUserStatusTC={props.getUserStatusTC}
-                           updateUserStatusTC={props.updateUserStatusTC} />
+            <ProfileStatus status={props.status}
+                           updateUserStatusTC={props.updateUserStatusTC}
+                           userId={userId}/>
         </div>
     );
 };

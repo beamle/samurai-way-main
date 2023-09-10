@@ -22,21 +22,25 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         if (!userId) {
             userId = '2'
         }
-        getUserProfileTC(userId)
-        getUserStatusTC(userId)
+        getUserProfileTC(Number(userId))
+        getUserStatusTC(Number(userId))
     }
 
     render() {
         return (
             <div className={s.profile}>
-                <Profile {...this.props} getUserStatusTC={getUserStatusTC} updateUserStatusTC={updateUserStatusTC}/>
+                <Profile {...this.props}
+                         status={this.props.status}
+                         updateUserStatusTC={this.props.updateUserStatusTC}
+                         getUserStatusTC={this.props.getUserStatusTC}/>
             </div>)
     }
 }
 
 const mapStateToProps = (state: StateType): MapPropToStateType => ({
     userProfileInfo: state.profilePage.userProfileInfo,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    status: state.profilePage.status
 })
 
 const WithUrlDataContainerComponent = (props: ProfileContainerPropsType) => {
@@ -55,11 +59,12 @@ export default connect(mapStateToProps, {
 type MapPropToStateType = {
     userProfileInfo: UserProfileInfoType
     isAuth: boolean
+    status: string
 }
 type MapStateToDispatchType = {
     // setUserProfileInfo: (userInfo: UserProfileInfoType) => void
-    getUserProfileTC: (userId: string) => void
-    getUserStatusTC: (userId: string) => void
+    getUserProfileTC: (userId: number) => void
+    getUserStatusTC: (userId: number) => void
     updateUserStatusTC: (status: string) => void
 }
 type RouterType = {

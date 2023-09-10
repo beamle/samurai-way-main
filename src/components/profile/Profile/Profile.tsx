@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import MyPosts from "../MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css";
-import {addChar, addPost} from "../../../store/profile/profile-reducer";
+import {addChar, addPost, getUserStatusTC} from "../../../store/profile/profile-reducer";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import {ActionsType} from "../../../trash/store";
 import store, {StoreType} from "../../../redux/redux-store";
@@ -14,8 +14,9 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.profile}>
             <ProfileInfo userProfileInfo={props.userProfileInfo}
-                         getUserStatusTC={props.getUserStatusTC}
-                         updateUserStatusTC={props.updateUserStatusTC}/>
+                         status={props.status}
+                         updateUserStatusTC={props.updateUserStatusTC}
+                         getUserStatusTC={getUserStatusTC}/>
             <MyPostsContainer/>
 
         </div>

@@ -28,7 +28,8 @@ test('the array of posts should be increased', () => {
                 {id: "3", message: 'I like bananas!?', like: 2},
                 {id: "4", message: 'Wooo, that"s nice!?', like: 211},],
                 newPostText: 'abc',
-                userProfileInfo: dummyExample
+                userProfileInfo: dummyExample,
+                status: ''
     }
     const message = "testing"
     const action = addPost(message)
