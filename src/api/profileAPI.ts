@@ -10,6 +10,39 @@ const instance = axios.create({
 
 export const profileAPI = {
     getProfile: (userId: string) => {
-        return instance.get(`profile/${userId}`)
+        return instance.get<GetProfileResponseType>(`profile/${userId}`)
+    },
+    getStatus: (userId: string) => {
+        return instance.get<string>(`status/${userId}`)
+    },
+    updateStatus: (status: string) => {
+        return instance.put<ProfileStatusResponseType>(`status`, {status})
     }
+}
+
+// types
+type GetProfileResponseType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
+    photos: {
+        small: string
+        large: string
+    }
+}
+type ProfileStatusResponseType = {
+    resultCode: number
+    messages: string[]
+    data: {}
 }

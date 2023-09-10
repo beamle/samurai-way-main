@@ -13,7 +13,9 @@ type ProfilePropsType = ProfileContainerPropsType
 const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.profile}>
-            <ProfileInfo userProfileInfo={props.userProfileInfo}/>
+            <ProfileInfo userProfileInfo={props.userProfileInfo}
+                         getUserStatusTC={props.getUserStatusTC}
+                         updateUserStatusTC={props.updateUserStatusTC}/>
             <MyPostsContainer/>
 
         </div>

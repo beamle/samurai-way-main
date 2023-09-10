@@ -2,7 +2,12 @@ import React from 'react';
 import s from "../Profile/Profile.module.css";
 import {StateType} from "../../../redux/redux-store";
 import Profile from "../Profile/Profile";
-import {getUserProfileTC, UserProfileInfoType} from "../../../store/profile/profile-reducer";
+import {
+    getUserProfileTC,
+    getUserStatusTC,
+    updateUserStatusTC,
+    UserProfileInfoType
+} from "../../../store/profile/profile-reducer";
 import {connect} from "react-redux";
 import {Navigate, Params, useParams} from 'react-router-dom';
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
@@ -12,18 +17,19 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
-        const {getUserProfileTC, isAuth} = this.props
+        const {getUserProfileTC, getUserStatusTC, updateUserStatusTC} = this.props
         let userId = this.props.params?.userId
         if (!userId) {
             userId = '2'
         }
         getUserProfileTC(userId)
+        getUserStatusTC(userId)
     }
 
     render() {
         return (
             <div className={s.profile}>
-                <Profile {...this.props}/>
+                <Profile {...this.props} getUserStatusTC={getUserStatusTC} updateUserStatusTC={updateUserStatusTC}/>
             </div>)
     }
 }
@@ -40,7 +46,9 @@ const WithUrlDataContainerComponent = (props: ProfileContainerPropsType) => {
 let AuthRedirectComponent = withAuthRedirect(WithUrlDataContainerComponent)
 
 export default connect(mapStateToProps, {
-    getUserProfileTC
+    getUserProfileTC,
+    getUserStatusTC,
+    updateUserStatusTC
 })(AuthRedirectComponent)
 
 
@@ -51,6 +59,8 @@ type MapPropToStateType = {
 type MapStateToDispatchType = {
     // setUserProfileInfo: (userInfo: UserProfileInfoType) => void
     getUserProfileTC: (userId: string) => void
+    getUserStatusTC: (userId: string) => void
+    updateUserStatusTC: (status: string) => void
 }
 type RouterType = {
     params?: Params
