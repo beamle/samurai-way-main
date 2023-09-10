@@ -10,6 +10,7 @@ const instance = axios.create({
 
 export const profileAPI = {
     getProfile: (userId: number) => {
+        debugger
         return instance.get<GetProfileResponseType>(`profile/${userId}`)
     },
     getStatus: (userId: number) => {

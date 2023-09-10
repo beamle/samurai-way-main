@@ -20,7 +20,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
         const {getUserProfileTC, getUserStatusTC, updateUserStatusTC} = this.props
         let userId = this.props.params?.userId
         if (!userId) {
-            userId = '2'
+            userId = '29502'
         }
         getUserProfileTC(Number(userId))
         getUserStatusTC(Number(userId))

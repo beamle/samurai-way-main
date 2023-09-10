@@ -2,13 +2,6 @@ import React, {ChangeEvent, RefObject} from 'react';
 
 class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
-    // componentDidMount() {
-    //     const {userId, getUserStatusTC} = this.props;
-    //     this.setState({
-    //         status: getUserStatusTC(userId)
-    //     })
-    // }
-
     state = {
         editMode: false,
         status: this.props.status
@@ -32,8 +25,12 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         })
     }
 
-    componentDidUpdate() {
-
+    componentDidUpdate(prevProps:any , prevState: any) {
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -59,7 +56,6 @@ type ProfileStatusPropsType = {
     userId: number
     status: string
     updateUserStatusTC: (status: string) => void
-    getUserStatusTC: (userId: number) => void
 
 
 }

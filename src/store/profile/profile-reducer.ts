@@ -71,6 +71,7 @@ export const getUserProfileTC = (userId: number) => (dispatch: Dispatch<ProfileR
 export const getUserStatusTC = (userId: number) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
     profileAPI.getStatus(userId)
         .then(res => {
+            debugger
                 dispatch(setUserStatus(res.data))
         })
 }
