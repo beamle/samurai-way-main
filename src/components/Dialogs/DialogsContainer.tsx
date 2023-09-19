@@ -1,11 +1,9 @@
-import React, {ChangeEvent, useRef} from 'react';
-import {StateType, StoreType} from "../../redux/redux-store";
+import React from 'react';
+import {StateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
-import {addMessage, addMessageChar, DialogsPageType} from "../../store/dialogs/dialogs.reducer";
-import Dialog from "./Dialog/Dialog";
-import Message from "./Message/Message";
+import {addMessage, DialogsPageType} from "../../store/dialogs/dialogs.reducer";
 import {connect} from "react-redux";
-import {compose, Dispatch} from "redux";
+import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
@@ -29,7 +27,7 @@ const mapStateToProps = (state: StateType): MapStatePropsType => {
 }
 
 export default compose<() => JSX.Element>(
-    connect(mapStateToProps, {addMessageChar, addMessage}),
+    connect(mapStateToProps, {addMessage}),
     withAuthRedirect)(Dialogs);
 
 

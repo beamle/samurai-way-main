@@ -20,23 +20,18 @@ const initialState = {
         {id: v1(), message: 'Lorem ipsum dolor sit amet, quas quod recusandae repellat suscipit voluptate.'},
         {id: v1(), message: 'Nikitich'}
     ] as MessageDataType[],
-    newMessageText: 'abc' as string
 }
 
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
     switch (action.type) {
-        case "ADD-MESSAGE-CHAR":
-            return {...state, newMessageText: action.newMessageChar}
         case "ADD-MESSAGE":
-            state.newMessageText = ''
             return {...state, messagesData: [...state.messagesData, {id: v1(), message: action.newMessage}]}
         default:
             return state
     }
 }
 
-export const addMessageChar = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
 export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
 export type DialogDataType = {
@@ -48,4 +43,4 @@ export type MessageDataType = {
     message: string
 }
 
-type ActionsType = ReturnType<typeof addMessageChar> | ReturnType<typeof addMessage>
+type ActionsType = ReturnType<typeof addMessage>

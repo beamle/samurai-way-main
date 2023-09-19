@@ -1,8 +1,8 @@
 import {v1} from "uuid"
-import {addChar, addPost, profileReducer, setUserProfileInfo} from "../store/profile/profile-reducer";
-import {addMessage, addMessageChar, dialogsReducer} from "../store/dialogs/dialogs.reducer";
-import {follow, setCurrentPage, setIsFetching, setUsers, setUsersCount, unFollow} from "../store/users/users-reducer";
-import { setUserAuthData } from "../auth/auth-reducer";
+import {addPost, setUserProfileInfo} from "../store/profile/profile-reducer";
+import {addMessage} from "../store/dialogs/dialogs.reducer";
+import {setUserAuthData} from "../auth/auth-reducer";
+import { ActionsType } from "../store/actions/actionsType";
 
 type PostDataType = {
     id: string
@@ -103,13 +103,9 @@ const store: StoreType = {
 // export const addMessageChar = (newMessageChar: string) => ({type: "ADD-MESSAGE-CHAR", newMessageChar} as const)
 // export const addMessage = (newMessage: string) => ({type: "ADD-MESSAGE", newMessage} as const)
 
-export type ActionsType =
-    ReturnType<typeof addChar> | ReturnType<typeof addPost> |
-    ReturnType<typeof addMessageChar> | ReturnType<typeof addMessage> |
-    // ReturnType<typeof follow> | ReturnType<typeof unFollow> |
-    // ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
-    // ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching> |
-    ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserAuthData>
-// TODO take this shit out to the separate file
-
+// export type ActionsType = ReturnType<typeof addPost> | ReturnType<typeof addMessage> |
+//     // ReturnType<typeof follow> | ReturnType<typeof unFollow> |
+//     // ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> |
+//     // ReturnType<typeof setUsersCount> | ReturnType<typeof setIsFetching> |
+//     ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserAuthData>
 

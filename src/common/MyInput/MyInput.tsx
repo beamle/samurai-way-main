@@ -1,4 +1,4 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 
 type MyInputPropsType = {
     type: string
@@ -8,7 +8,6 @@ type MyInputPropsType = {
 
 const MyInput = React.forwardRef<HTMLInputElement, MyInputPropsType>(({type, onChangeCallback, value}, ref) => {
 
-    // const {type, onChangeCallback, value} = props;
     return (
         <div>
             <input ref={ref} type={type} onChange={onChangeCallback} value={value}></input>

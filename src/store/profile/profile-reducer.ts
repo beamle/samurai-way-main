@@ -33,9 +33,9 @@ const initialState: ProfilePageType = {
         {id: v1(), message: 'It"s my first post?', like: 3},
         {id: v1(), message: 'I like bananas!?', like: 2},
         {id: v1(), message: 'Wooo, that"s nice!?', like: 211},],
-    newPostText: 'abc',
     userProfileInfo: dummyExample,
-    status: ''
+    status: '',
+    newPostText: ''
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType): ProfilePageType => {
@@ -44,8 +44,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             const newPost = {id: v1(), message: action.postText, like: 222}
             state.newPostText = '';
             return {...state, postData: [...state.postData, newPost]}
-        case "ADD-CHAR":
-            return {...state, newPostText: action.newText}
         case "SET-PROFILE-INFO":
             return {...state, userProfileInfo: {...action.userInfo}}
         case "SET-USER-STATUS":
@@ -56,7 +54,6 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 }
 
 //AC
-export const addChar = (newText: string) => ({type: "ADD-CHAR", newText} as const)
 export const addPost = (postText: string) => ({type: "ADD-POST", postText} as const)
 export const setUserProfileInfo = (userInfo: UserProfileInfoType) => ({type: "SET-PROFILE-INFO", userInfo} as const)
 export const setUserStatus = (status: string) => ({type: "SET-USER-STATUS", status} as const)
@@ -71,7 +68,6 @@ export const getUserProfileTC = (userId: number) => (dispatch: Dispatch<ProfileR
 export const getUserStatusTC = (userId: number) => (dispatch: Dispatch<ProfileReducerActionsType>) => {
     profileAPI.getStatus(userId)
         .then(res => {
-            debugger
                 dispatch(setUserStatus(res.data))
         })
 }
@@ -87,8 +83,7 @@ export const updateUserStatusTC = (status: string) => (dispatch: Dispatch) => {
 
 
 //Types
-type ProfileReducerActionsType =
-    ReturnType<typeof addChar> | ReturnType<typeof addPost> |
+type ProfileReducerActionsType = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfileInfo> | ReturnType<typeof setUserStatus>
 
 export type PostDataType = {

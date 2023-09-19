@@ -1,11 +1,8 @@
-import React, {ChangeEvent} from 'react';
-import MyPosts from "../MyPosts/MyPosts";
+import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css";
-import {addChar, addPost, getUserStatusTC} from "../../../store/profile/profile-reducer";
+import {getUserStatusTC} from "../../../store/profile/profile-reducer";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
-import {ActionsType} from "../../../trash/store";
-import store, {StoreType} from "../../../redux/redux-store";
 import {ProfileContainerPropsType} from "../ProfileContainer/ProfileContainer";
 
 type ProfilePropsType = ProfileContainerPropsType
