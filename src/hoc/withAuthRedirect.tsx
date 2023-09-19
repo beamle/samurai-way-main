@@ -4,11 +4,11 @@ import {DialogsPropsType} from "../components/Dialogs/DialogsContainer";
 import {connect} from "react-redux";
 import {StateType} from "../redux/redux-store";
 
-type MSTPType = {
+type mapStateToPropsType = {
     isAuth: boolean
 }
 
-const mapStateToProps = (state:StateType):MSTPType => {
+const mapStateToProps = (state:StateType):mapStateToPropsType => {
    return {
        isAuth: state.auth.isAuth
    }
@@ -16,7 +16,7 @@ const mapStateToProps = (state:StateType):MSTPType => {
 
 export function withAuthRedirect<T>(Component: any) {
 
-    function RedirectComponent(props:MSTPType){
+    function RedirectComponent(props:mapStateToPropsType){
 
         const {isAuth, ...restProps} = props
         console.log(Component)

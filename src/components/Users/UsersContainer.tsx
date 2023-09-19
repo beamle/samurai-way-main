@@ -32,8 +32,9 @@ class UsersAPI extends React.Component<UsersAPIPropsType> {
             unFollowUserTC, followUserTC, isAuth} = this.props
         if(!isAuth) return <Navigate to={"/login"}/>
         return <>
-            {isFetching ? <Preloader isFetching={isFetching}/> :
-                <UsersFC usersPart={usersPart}
+            {isFetching
+                ? <Preloader isFetching={isFetching}/>
+                : <UsersFC usersPart={usersPart}
                                     pageSize={pageSize} usersCount={usersCount} currentPage={currentPage}
                                     pageChange={this.pageChange} followInProgress={followInProgress}
                                     unFollowUserTC={unFollowUserTC} followUserTC={followUserTC}/>
