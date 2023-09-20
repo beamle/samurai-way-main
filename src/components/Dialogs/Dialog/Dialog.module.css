@@ -1,12 +1,10 @@
 .dialog {
-    background-color: #ffffff;
+    background-color: #ff9c9c;
     border-bottom: 1px solid #dadada;
     border-radius: 5px;
     display: flex;
     padding: 5px;
     width: 100%;
-
-
 }
 
 .dialog_img {
@@ -17,4 +15,13 @@
 .dialog_img img {
     width: 50px;
 
+}
+
+.dialog_title {
+    margin-top: 5px;;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #00558f;
 }
