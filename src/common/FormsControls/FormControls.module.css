@@ -36,3 +36,7 @@ textarea:focus {
 .myTextarea.error span {
     color: red;
 }
+
+.formSummaryError {
+    color: red;
+}

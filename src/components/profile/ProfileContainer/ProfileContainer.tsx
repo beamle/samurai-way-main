@@ -9,19 +9,14 @@ import {
     UserProfileInfoType
 } from "../../../store/profile/profile-reducer";
 import {connect} from "react-redux";
-import {Navigate, Params, useParams} from 'react-router-dom';
+import {Params, useParams} from 'react-router-dom';
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
-import Dialogs from "../../Dialogs/Dialogs";
-import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
         const {getUserProfileTC, getUserStatusTC, updateUserStatusTC} = this.props
-        let userId = this.props.params?.userId
-        if (!userId) {
-            userId = '29502'
-        }
+        let userId = this.props.userId
         getUserProfileTC(Number(userId))
         getUserStatusTC(Number(userId))
     }
@@ -40,7 +35,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 const mapStateToProps = (state: StateType): MapPropToStateType => ({
     userProfileInfo: state.profilePage.userProfileInfo,
     isAuth: state.auth.isAuth,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    userId: state.auth.id
 })
 
 const WithUrlDataContainerComponent = (props: ProfileContainerPropsType) => {
@@ -60,6 +56,7 @@ type MapPropToStateType = {
     userProfileInfo: UserProfileInfoType
     isAuth: boolean
     status: string
+    userId: string | null
 }
 type MapStateToDispatchType = {
     // setUserProfileInfo: (userInfo: UserProfileInfoType) => void
