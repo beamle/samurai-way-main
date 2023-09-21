@@ -14,6 +14,7 @@ import axios from "axios";
 import UsersFC from "./UsersFC";
 import Preloader from "../../common/Preloader/Preloader";
 import {Navigate} from "react-router-dom";
+import {currentPage, followInProgress, getPageSize, getUsers, isFetching, usersCount} from "./user-selectors";
 
 class UsersAPI extends React.Component<UsersAPIPropsType> {
 
@@ -46,12 +47,12 @@ class UsersAPI extends React.Component<UsersAPIPropsType> {
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
-        usersPart: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        usersCount: state.usersPage.usersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followInProgress: state.usersPage.followingInProgress,
+        usersPart: getUsers(state),
+        pageSize: getPageSize(state),
+        usersCount: usersCount(state),
+        currentPage: currentPage(state),
+        isFetching: isFetching(state),
+        followInProgress: followInProgress(state),
         isAuth: state.auth.isAuth
     }
 }

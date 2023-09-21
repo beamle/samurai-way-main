@@ -29,12 +29,12 @@ export const authReducer = (state: AuthReducerType = initialState, actions: Auth
 }
 
 //types
-type AuthReducerActionsType = ReturnType<typeof setUserAuthData>
+export type AuthReducerActionsType = ReturnType<typeof setUserAuthData>
 //AC
 export const setUserAuthData = (userData: UserDataType, isAuth: boolean) => ({type: "SET-USER-DATA", userData, isAuth}) as const
 //TC
-export const getUserAuthTC = () => (dispatch: Dispatch<AuthReducerActionsType>) => {
-    authAPI.getUserAuthData()
+export const getUserAuthTC = () => (dispatch: Dispatch) => {
+    return authAPI.getUserAuthData()
         .then(res => {
             if(res.data.resultCode === 0) dispatch(setUserAuthData(res.data.data, true))
         })
