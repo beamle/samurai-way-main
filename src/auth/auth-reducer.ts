@@ -33,15 +33,15 @@ export type AuthReducerActionsType = ReturnType<typeof setUserAuthData>
 //AC
 export const setUserAuthData = (userData: UserDataType, isAuth: boolean) => ({type: "SET-USER-DATA", userData, isAuth}) as const
 //TC
-export const getUserAuthTC = () => (dispatch: Dispatch) => {
-    return authAPI.getUserAuthData()
-        .then(res => {
+export const getUserAuthTC = () => async (dispatch: Dispatch) => {
+    const res = await authAPI.getUserAuthData()
+        try {
             if(res.data.resultCode === 0) dispatch(setUserAuthData(res.data.data, true))
-        })
+        } catch (err) {}
 }
-export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
-    authAPI.login(email, password, rememberMe)
-        .then(res => {
+export const loginTC = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
+    const res = await authAPI.login(email, password, rememberMe)
+        try {
             if(res.data.resultCode === 0) {
                 dispatch(getUserAuthTC())
             } else {
@@ -49,13 +49,15 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
                 let action = stopSubmit("login", {_error: message});
                 dispatch(action)
             }
-        })
+        } catch (err) {
+
+        }
 }
-export const logoutTC = () => (dispatch: Dispatch) => {
-    authAPI.logout()
-        .then(res => {
+export const logoutTC = () => async (dispatch: Dispatch) => {
+    const res = await authAPI.logout()
+        try {
             if(res.data.resultCode === 0) {
                 dispatch(setUserAuthData({id: null, email: null, login: null}, false))
             }
-        })
+        } catch (err) {}
 }

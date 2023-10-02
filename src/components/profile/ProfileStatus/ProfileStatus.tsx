@@ -1,4 +1,4 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 
 class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
@@ -34,7 +34,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
 
     render() {
-        return <>
+        return <div>
             {!this.state.editMode &&
                 <div><span onDoubleClick={this.activateEditMode}>{this.state.status || '---'}</span></div>
             }
@@ -42,7 +42,7 @@ class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 <div><input onChange={this.onStatusChange} onBlur={this.deactivateEditMode} value={this.state.status} autoFocus/></div>
             }
 
-        </>
+        </div>
     }
 };
 

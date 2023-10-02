@@ -2,15 +2,15 @@ import React from 'react';
 import s from "./FormControls.module.css";
 
 
-const FormControl = ({ input, meta, elementType, children, ...props }: any) => {
-    const hasError = meta.touched && meta.error;
+const FormControl = ({ input, meta: {touched, error}, elementType, children, ...props }: any) => {
+    const hasError = touched && error;
 
     return (
         <div className={s.myTextarea + " " + (hasError ? s.error : '')}>
             <div>
                 {React.createElement(elementType, { ...input, ...props} )}
             </div>
-            {hasError && <span>{meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     );
 };
