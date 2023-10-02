@@ -14,6 +14,7 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+
     componentDidMount() {
         const {getUserProfileTC, getUserStatusTC, updateUserStatusTC} = this.props
         let userId = this.props.userId
@@ -22,6 +23,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 
     render() {
+        console.log("rendered")
         return (
             <div className={s.profile}>
                 <Profile {...this.props}
